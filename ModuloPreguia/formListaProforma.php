@@ -28,13 +28,14 @@ class Proforma
                             <div>
                                 <nav class="navbar p-1 navbar-horizontal navbar-expand-lg navbar-dark bg-red">
                                     <div class="container">
-                                        <div class="d-flex justify-content-between align-items-center"><img src="/img/logo_blanco.png" alt="logo" class="pl-3 pr-3" style="width: 60px;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <!-- <img src="/img/logo_blanco.png" alt="logo" class="pl-3 pr-3" style="width: 60px;"> -->
                                             <div class="navbar-brand text-white">Envios</div>
                                         </div> <button type="button" data-toggle="collapse" data-target="#navbar-success" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler collapsed"><span class="navbar-toggler-icon"></span></button>
                                         <div id="navbar-success" class="navbar-collapse collapse" style="">
                                             <div class="navbar-collapse-header">
                                                 <div class="row">
-                                                    <div class="col-6 collapse-brand"><a href="../../index.html"><img src="https://shalom.pe/images/logo_shalom.png"></a></div>
+                                                    <!-- <div class="col-6 collapse-brand"><a href="../../index.html"><img src="https://shalom.pe/images/logo_shalom.png"></a></div> -->
                                                     <div class="col-6 collapse-close"><button type="button" data-toggle="collapse" data-target="#navbar-success" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler collapsed"><span></span> <span></span></button></div>
                                                 </div>
                                             </div>
