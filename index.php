@@ -1,8 +1,8 @@
 <?php 
 
-include_once('ModuloPreguia/formListaProforma.php');
+include_once('ModuloBoleta/formBoleta.php');
 
-$obj = new Proforma;
-$obj -> mostrarListaPreguia();
+$obj = new Boleta;
+$obj -> mostrarBoleta();
 
 ?>

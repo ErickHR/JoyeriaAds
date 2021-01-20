@@ -1,9 +1,9 @@
 <?php
 
-class Proforma
+class Boleta
 {
 
-    public function mostrarListaPreguia()
+    public function mostrarBoleta()
     {
 ?>
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,6 +21,7 @@ class Proforma
             <link rel="stylesheet" href="./styles/argon.css">
             <link rel="stylesheet" href="./styles/nucleo.css">
             <link rel="stylesheet" href="./styles/style.css">
+
             <title>bienvenida</title>
         </head>
 
@@ -144,54 +145,134 @@ class Proforma
                                     </div>
                                 </nav>
                             </div>
-                            <!-- <div class="overflow-scroll shadow"> -->
-                            <div>
+                            <!-- <div class=" "> -->
+                            <div class="vh-100 overflow-scroll shadow pb-4">
                                 <div id="envioSeguimientoList" class=" bg-base-plomo">
                                     <div class="shadow ">
                                         <div class="p-4">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <div class="col-6 col-sm-12 col-md-6">
-                                                            <div class="list-group list-group-flush ">
-                                                                <div class="form-group focused">
-                                                                    <label class="form-control-label" for="input-name">Nro</label>
-                                                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="Nro" value="" required="" autofocus="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6 col-sm-12 col-md-6">
+                                                        <div class="col-12 col-sm-12 col-md-12">
                                                             <div class="list-group list-group-flush ">
                                                                 <div class="form-group focused">
                                                                     <label class="form-control-label" for="input-name">DNI</label>
                                                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="DNI" value="" required="" autofocus="">
+                                                                    <label class="form-control-label" for="input-name">NOMBRE: </label><cite title="Source Title">Huarancca Rivas, Isaac Erick</cite>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-6 col-sm-12 col-md-6">
-                                                            <div class="list-group list-group-flush ">
-                                                                <div class="form-group focused">
-                                                                    <label class="form-control-label" for="input-name">DESDE</label>
-                                                                    <input type="date" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="Nro" value="" required="" autofocus="">
+                                                        <div class="col-sm-12 col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="list-group list-group-flush ">
+                                                                        <div class="form-group focused">
+                                                                            <label class="form-control-label" for="input-name">PRODUCTO</label>
+                                                                            <div class="input-group input-group-alternative">
+                                                                                <input class="form-control form-control-alternative bg-secondary" placeholder="PRODUCTO" type="text">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text bg-secondary cursor-pointer"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table align-items-center table-flush">
+                                                                            <thead class="thead-light">
+                                                                                <tr>
+                                                                                    <th scope="col">Código</th>
+                                                                                    <th scope="col">Descripción</th>
+                                                                                    <th scope="col"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        prod_001
+                                                                                    </th>
+                                                                                    <td>
+                                                                                        joya 1
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <button class="btn btn-ligth bg-secondary"><i class="fa fa-plus" aria-hidden="true"></i> </button>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        prod_002
+                                                                                    </th>
+                                                                                    <td>
+                                                                                        joya 2
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <button class="btn btn-ligth bg-secondary"><i class="fa fa-plus" aria-hidden="true"></i> </button>
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-6 col-sm-12 col-md-6">
+                                                        <div class="col-sm-12 col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <div class="list-group list-group-flush ">
+                                                                        <div class="form-group focused">
+                                                                            <label class="form-control-label" for="input-name">CANTIDAD</label>
+                                                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="CANTIDAD" value="" required="" autofocus="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-4">
                                                             <div class="list-group list-group-flush ">
                                                                 <div class="form-group focused">
-                                                                    <label class="form-control-label" for="input-name">HASTA</label>
-                                                                    <input type="date" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="Nro" value="" required="" autofocus="">
+                                                                    &nbsp;
+                                                                    <br>
+                                                                    <button type="button" class="btn col-sm-12 col-sm-12 btn-warning mx-auto"><i class="fa fa-save" aria-hidden="true"></i> Guardar Producto</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row mt-5">
+                                                        <div class="col-8">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <label class="form-control-label" for="input-name">TIPO DE PAGO</label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                        <div class="custom-control custom-radio mb-3">
+                                                                            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                                                                            <label class="custom-control-label" for="customRadio6">Parcial</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-6">
+                                                                        <div class="custom-control custom-radio mb-3">
+                                                                            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                                                                            <label class="custom-control-label" for="customRadio6">Total</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-4">
                                                         <div class="col-12">
                                                             <div class="list-group list-group-flush ">
                                                                 <div class="form-group focused d-flex">
-                                                                    <button type="button" class="btn btn-lg col-md-4 col-sm-12 btn-danger mx-auto"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
+                                                                    <button type="button" class="btn btn-lg col-sm-12 col-md-6 btn-danger mx-auto"> Generar Boleta</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -209,25 +290,36 @@ class Proforma
                                                                 <thead class="thead-light">
                                                                     <tr>
                                                                         <th scope="col" data-sort="name" class="sort">Nro</th>
-                                                                        <th scope="col" data-sort="name" class="sort">Fecha</th>
-                                                                        <th scope="col" data-sort="budget" class="sort">Código</th>
-                                                                        <th scope="col" data-sort="status" class="sort">Nombre</th>
-                                                                        <th scope="col">Descripción</th>
-                                                                        <th scope="col" data-sort="completion" class="sort">Total</th>
+                                                                        <th scope="col" data-sort="name" class="sort">Nombre</th>
+                                                                        <th scope="col" data-sort="budget" class="sort">Descripción</th>
+                                                                        <th scope="col" data-sort="status" class="sort">Cantidad</th>
+                                                                        <th scope="col">Precio Unitario</th>
+                                                                        <th scope="col">Precio Total</th>
                                                                         <th scope="col"></th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody class="list">
                                                                     <tr>
-                                                                        <td scope="col" data-sort="name" class="sort">12346578</th>
-                                                                        <td scope="col" data-sort="name" class="sort">2020-01-01</th>
-                                                                        <td scope="col" data-sort="budget" class="sort">asd4</th>
-                                                                        <td scope="col" data-sort="status" class="sort">Erick</th>
-                                                                        <td scope="col" data-sort="status" class="sort">Este es descripcion</th>
+                                                                        <td scope="col" data-sort="name" class="sort">1</th>
+                                                                        <td scope="col" data-sort="name" class="sort">joyas</th>
+                                                                        <td scope="col" data-sort="budget" class="sort">----</th>
+                                                                        <td scope="col" data-sort="status" class="sort">1</th>
                                                                         <td scope="col" data-sort="status" class="sort">20</th>
                                                                         <th scope="col">
                                                                             <button type="button" class="btn btn-light">
-                                                                                <i class="fas fa-edit"></i>
+                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                            </button>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td scope="col" data-sort="name" class="sort">2</th>
+                                                                        <td scope="col" data-sort="name" class="sort">joyas 2</th>
+                                                                        <td scope="col" data-sort="budget" class="sort">Esta es una joya de alto valor-</th>
+                                                                        <td scope="col" data-sort="status" class="sort">2</th>
+                                                                        <td scope="col" data-sort="status" class="sort">40</th>
+                                                                        <th scope="col">
+                                                                            <button type="button" class="btn btn-light">
+                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
                                                                             </button>
                                                                         </th>
                                                                     </tr>
