@@ -1,8 +1,8 @@
 <?php 
 
-include_once('ModuloBoleta/formBoleta.php');
+include_once('ModuloReclamo/formFichaReclamo.php');
 
-$obj = new Boleta;
-$obj -> mostrarBoleta();
+$obj = new Reclamo;
+$obj -> mostrarFichaReclamo();
 
 ?>
