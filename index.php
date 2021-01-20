@@ -1,8 +1,8 @@
 <?php 
 
-include_once('ModuloFichaReclamo/formListaReclamo.php');
+include_once('ModuloPreguia/formListaProforma.php');
 
-$obj = new ReclamoLista;
-$obj -> mostrarListaReclamo();
+$obj = new Proforma;
+$obj -> mostrarListaPreguia();
 
 ?>
