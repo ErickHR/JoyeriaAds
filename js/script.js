@@ -9,5 +9,8 @@
 // });
 
 $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();   
-  });
+    $('[data-toggle="popover"]').popover();
+    $(document).on('click', '.btn-add__cliente', function(){
+      $('.div-add__cliente').toggleClass('d-none')
+    })
+});
