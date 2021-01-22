@@ -160,13 +160,20 @@ class formProforma
                                                                 <div class="form-group focused">
                                                                     <label class="form-control-label" for="input-name">DNI</label>
                                                                     <div class="input-group input-group-alternative">
-                                                                        <input class="form-control form-control-alternative bg-secondary" placeholder="DNI" type="text">
+                                                                        <input class="form-control form-control-alternative bg-secondary form-create__input-dni" placeholder="DNI" type="text">
                                                                         <div class="input-group-prepend">
-                                                                            <span class="input-group-text bg-secondary cursor-pointer"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                                                            <span class="input-group-text bg-secondary cursor-pointer btn-add__cliente"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                                            <span class="input-group-text bg-secondary cursor-pointer btn-search__cliente"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                                            <span class="input-group-text bg-secondary cursor-pointer btn-add__cliente" style="display: none;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                                         </div>
                                                                     </div>
-                                                                    <label class="form-control-label" for="input-name">NOMBRE: </label><cite title="Source Title">Huarancca Rivas, Isaac Erick</cite>
+                                                                    <div class="form-create__div-mostrar-nombre" style="display: none;">
+                                                                        <div class="d-flex">
+                                                                            <label class="form-control-label" for="input-name">NOMBRE: </label>
+                                                                            <div class="form-create__cite-nombre">
+                                                                                <cite title="Nombre del cliente y/o empresa">Huarancca Rivas, Isaac Erick</cite>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -175,89 +182,91 @@ class formProforma
                                                         <div class="col-12">
                                                             <div class="d-flex">
                                                                 <div class="card mx-auto">
-                                                                    <div class="card-body">
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">DNI</label>
-                                                                                        <input class="form-control form-control-alternative bg-secondary" placeholder="DNI" type="NUMBER">
+                                                                    <form action="" method="post" class="form-create__cliente" id="form-create__cliente">
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">DNI</label>
+                                                                                            <input class="form-control form-control-alternative bg-secondary form-cliente__dni" name="dni" placeholder="DNI" type="NUMBER">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">NOMBRE</label>
+                                                                                            <input class="form-control form-control-alternative bg-secondary form-cliente__nombre" name="nombre" placeholder="NOMBRE" type="text">
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-6">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">NOMBRE</label>
-                                                                                        <input class="form-control form-control-alternative bg-secondary" placeholder="NOMBRE" type="text">
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">APELLIDO PATERNO</label>
+                                                                                            <input class="form-control form-control-alternative bg-secondary form-cliente__paterno" name="paterno" placeholder="APELLIDO PATERNO" type="text">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">APELLIDO MATERNO</label>
+                                                                                            <input class="form-control form-control-alternative bg-secondary form-cliente__materno" name="materno" placeholder="APELLIDO MATERNO" type="text">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <label class="form-control-label" for="input-name">UBIGEO</label>
+                                                                                <div class="col-12 col-sm-4 col-md-4">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">DEPARTAMENTO</label>
+                                                                                            <select name="" class="form-control form-control-alternative bg-secondary">
+                                                                                                <option value="1">Lima</option>
+                                                                                                <option value="2">Pasco</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-sm-4 col-md-4">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">PROVINCIA</label>
+                                                                                            <select name="" class="form-control form-control-alternative bg-secondary">
+                                                                                                <option value="1">Huarochiri</option>
+                                                                                                <option value="2">Huarura</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-sm-4 col-md-4">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused">
+                                                                                            <label class="form-control-label" for="input-name">DISTRITO</label>
+                                                                                            <select name="" class="form-control form-control-alternative bg-secondary">
+                                                                                                <option value="1">Villa el salvador</option>
+                                                                                                <option value="2">Santa Anita</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row mt-4">
+                                                                                <div class="col-12">
+                                                                                    <div class="list-group list-group-flush ">
+                                                                                        <div class="form-group focused d-flex">
+                                                                                            <button type="sumit" class="btn btn-lg col-sm-12 col-md-6 btn-primary mx-auto"> Guardar</button>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">APELLIDO PATERNO</label>
-                                                                                        <input class="form-control form-control-alternative bg-secondary" placeholder="APELLIDO PATERNO" type="text">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">APELLIDO MATERNO</label>
-                                                                                        <input class="form-control form-control-alternative bg-secondary" placeholder="APELLIDO MATERNO" type="text">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <label class="form-control-label" for="input-name">UBIGEO</label>
-                                                                            <div class="col-12 col-sm-4 col-md-4">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">DEPARTAMENTO</label>
-                                                                                        <select name="" class="form-control form-control-alternative bg-secondary">
-                                                                                            <option value="1">Lima</option>
-                                                                                            <option value="2">Pasco</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-12 col-sm-4 col-md-4">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">PROVINCIA</label>
-                                                                                        <select name="" class="form-control form-control-alternative bg-secondary">
-                                                                                            <option value="1">Huarochiri</option>
-                                                                                            <option value="2">Huarura</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-12 col-sm-4 col-md-4">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused">
-                                                                                        <label class="form-control-label" for="input-name">DISTRITO</label>
-                                                                                        <select name="" class="form-control form-control-alternative bg-secondary">
-                                                                                            <option value="1">Villa el salvador</option>
-                                                                                            <option value="2">Santa Anita</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-4">
-                                                                            <div class="col-12">
-                                                                                <div class="list-group list-group-flush ">
-                                                                                    <div class="form-group focused d-flex">
-                                                                                        <button type="button" class="btn btn-lg col-sm-12 col-md-6 btn-primary mx-auto"> Guardar</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -270,19 +279,19 @@ class formProforma
                                                                         <div class="form-group focused">
                                                                             <label class="form-control-label" for="input-name">PRODUCTO</label>
                                                                             <div class="input-group input-group-alternative">
-                                                                                <input class="form-control form-control-alternative bg-secondary" placeholder="PRODUCTO" type="text">
+                                                                                <input class="form-control form-control-alternative bg-secondary input-mostrar__producto" placeholder="PRODUCTO" type="text">
                                                                                 <div class="input-group-prepend">
-                                                                                    <span class="input-group-text bg-secondary cursor-pointer"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                                                    <span class="input-group-text bg-secondary cursor-pointer btn-search__producto"><i class="fa fa-search" aria-hidden="true"></i></span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
+                                                            <div class="row div-mostrar__producto" style="display: none;">
                                                                 <div class="col-12">
                                                                     <div class="table-responsive">
-                                                                        <table class="table align-items-center table-flush">
+                                                                        <table class="table align-items-center table-flush tabla-choose__producto">
                                                                             <thead class="thead-light">
                                                                                 <tr>
                                                                                     <th scope="col">Código</th>
@@ -290,30 +299,8 @@ class formProforma
                                                                                     <th scope="col"></th>
                                                                                 </tr>
                                                                             </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <th scope="row">
-                                                                                        prod_001
-                                                                                    </th>
-                                                                                    <td>
-                                                                                        joya 1
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <button class="btn btn-ligth bg-secondary"><i class="fa fa-plus" aria-hidden="true"></i> </button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <th scope="row">
-                                                                                        prod_002
-                                                                                    </th>
-                                                                                    <td>
-                                                                                        joya 2
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <button class="btn btn-ligth bg-secondary"><i class="fa fa-plus" aria-hidden="true"></i> </button>
-
-                                                                                    </td>
-                                                                                </tr>
+                                                                            <tbody class="tbody-mostrar__producto">
+                                                                                
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -326,7 +313,7 @@ class formProforma
                                                                     <div class="list-group list-group-flush ">
                                                                         <div class="form-group focused">
                                                                             <label class="form-control-label" for="input-name">CANTIDAD</label>
-                                                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="CANTIDAD" value="" required="" autofocus="">
+                                                                            <input type="number" name="name" id="input-name" class="form-control form-control-alternative bg-secondary input-cantidad__producto" placeholder="CANTIDAD" value="" required="" autofocus="">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -339,7 +326,7 @@ class formProforma
                                                                 <div class="form-group focused">
                                                                     &nbsp;
                                                                     <br>
-                                                                    <button type="button" class="btn col-sm-12 col-sm-12 btn-warning mx-auto"><i class="fa fa-save" aria-hidden="true"></i> Guardar Producto</button>
+                                                                    <button type="button" class="btn col-sm-12 col-sm-12 btn-warning mx-auto btn-save__producto"><i class="fa fa-save" aria-hidden="true"></i> Guardar Producto</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -419,7 +406,7 @@ class formProforma
                 </div>
             </div>
 
-        <script src="./js/script.js"></script>
+            <script src="./js/proforma.js"></script>
         </body>
 
         </html>
