@@ -41,7 +41,7 @@ class Ecliente extends conexion
 			$stmt = $conn->prepare("INSERT INTO cliente( dni, nombre, apell_pat, apell_mat ) VALUES ( ?, ?, ?, ? ) ");
 			$res = $stmt ->execute( [ $_POST['dni'], $_POST['nombre'], $_POST['paterno'], $_POST['materno'] ] );
 			if( $res ) {
-				return [ 'resultado' => true ];
+				return [ 'resultado' => true, 'data' => $conn->lastInsertId() ];
 			}
 			return [ ['resultado' => false] ];
 		}catch( Exception $e ){

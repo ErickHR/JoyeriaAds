@@ -7,7 +7,7 @@ class conexion
     
 	protected function conectar()
 	{
-        $dsn = 'mysql:dbname=ads_joyerias;host=localhost;charset=utf8';
+        $dsn = 'mysql:dbname=joyeria_july;host=localhost;charset=utf8';
         $usuario = 'root';
         $contraseña = '';
 

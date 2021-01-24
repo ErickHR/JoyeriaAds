@@ -1,40 +1,5 @@
 let producto = null
-
-function ajax( tipoData,data, callBackSucces = null, callBackError = null) {
-    $.ajax({
-        url: `obtenerDatos/obtener${tipoData}.php`,
-        type: "POST",
-        data: data,
-        success: function (res) {
-            let data = null
-            if (typeof res == 'object') {
-                data = res
-            } else {
-                data = JSON.parse(res)
-            }
-            if (data.resultado) {
-                if (callBackSucces && typeof callBackSucces == 'function') {
-                    callBackSucces( data.data )
-                }
-            } else {
-                if (callBackError && typeof callBackSucces == 'function') {
-                    callBackError()
-                }
-            }
-        }
-    });
-}
-
-function ajaxApi(data, callBackSucces = null) {
-    $.ajax({
-        url: `https://dni.optimizeperu.com/api/persons/${data}`,
-        success: function (res) {
-            if (callBackSucces && typeof callBackSucces == 'function') {
-                callBackSucces(res)
-            }
-        }
-    });
-}
+let cliente = null
 
 function rellenarTablasProductos( data, _clase ) {
 
@@ -60,6 +25,32 @@ function rellenarTablasProductos( data, _clase ) {
 
 }
 
+function rellenarListaTablasProductos( data, _clase ) {
+
+    let html = ``
+
+    data.forEach( ( item, index ) => {
+        html += `
+            <tr>
+                <td scope="col" data-sort="name" class="sort">${index+1}</th>
+                <td scope="col" data-sort="name" class="sort">${item.nombre}</th>
+                <td scope="col" data-sort="budget" class="sort">${item.descripcion}</th>
+                <td scope="col" data-sort="status" class="sort">${item.cantidad}</th>
+                <td scope="col" data-sort="status" class="sort">${item.precio}</th>
+                <td scope="col" data-sort="status" class="sort">${item.total}</th>
+                <th scope="col">
+                    <button type="button" class="btn btn-light btn-delete__producto" data-producto='${ JSON.stringify( item ) }' data-index="${index}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </th>
+            </tr>
+        `
+    } )
+
+    $(`.${_clase}`).html( html )
+
+}
+
 $(document).ready(function () {
 
     $(document).on('keyup', '.form-create__input-dni', function () {
@@ -72,6 +63,7 @@ $(document).ready(function () {
             ajax( 'Cliente', data, (data) => {
                 $('.form-create__cite-nombre').html(`<cite title="Nombre del cliente y/o empresa">${data[0].nombreCompleto}</cite>`)
                 $('.form-create__div-mostrar-nombre').show()
+                cliente = data[0].idcliente
             }, () => {
 
                 $('.btn-search__cliente').hide()
@@ -98,6 +90,7 @@ $(document).ready(function () {
         e.preventDefault(); 
         let formData = $( this ).serialize() + `&accion=agregar_cliente`
         ajax( 'Cliente', formData, ( data ) => {
+            cliente = data
             $('.btn-add__cliente').trigger('click')
         } )
 
@@ -133,7 +126,27 @@ $(document).ready(function () {
         let data = {...producto}
         data.accion = 'guardar_session_producto'
         data.cantidad = $( '.input-cantidad__producto' ).val()
-        ajax( 'Producto', data )
+        ajax( 'Producto', data, ( data ) => {
+            rellenarListaTablasProductos( data, 'tbody-lista__productos' )
+        } )
+    })
+
+    $(document).on( 'click', '.btn-delete__producto', function(){
+        let producto = $(this).data('producto')
+        let index = $(this).data('index')
+        let data = {...producto}
+        data.accion = 'borrar_session_producto'
+        data.index = $(this).data('index')
+        ajax( 'Producto', data, ( data ) => {
+            rellenarListaTablasProductos( data, 'tbody-lista__productos' )
+        } )
+    } )
+
+    $(document).on('click', '.btn-form-registrar__proforma', function(){
+        let data = {}
+        data.cliente = {...cliente}
+        data.accion = 'registrar_proforma'
+        ajax( 'Proforma', data)
     })
 
 });

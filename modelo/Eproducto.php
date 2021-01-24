@@ -39,18 +39,49 @@ class Eproducto extends conexion
     }
     
     public function funct_guardar_session_producto(){
-        if( !isset( $_SESSION['productos'] ) ) {
-            $_SESSION['productos'] = [];
+		if( !isset( $_SESSION['productos'] ) ) {
+			$_POST['total'] = $_POST['cantidad']  * $_POST['precio'];
+			$_SESSION['productos'] = [];
+			unset( $_POST['accion'] );
             $_SESSION['productos'] = [$_POST];
-            return $_SESSION['productos'];
+		} else {
+			$_POST['total'] = $_POST['cantidad']  * $_POST['precio'];
+			$data = $_SESSION['productos'];
+			unset( $_POST['accion'] );
+			$data[] = $_POST;
+			$_SESSION['productos'] = $data;
 		}
-		$data = $_SESSION['productos'];
-		$data[] = $_POST;
-		$_SESSION['productos'] = $data;
         // foreach( $_POST as $key => $item ) {
         //     $_SESSION['productos'][][$key] = $item;
-        // }
-        return $_SESSION['productos'];
+		// }
+		if( count( $_SESSION['productos'] ) != 0 ) {
+			return [ 'resultado' => true, 'data' => $_SESSION['productos'] ];
+		}
+        return [ ['resultado' => false] ];
+	}
+
+	public function funct_borrar_session_producto(){
+		$data = [];
+		foreach( $_SESSION['productos'] as $item ){
+			if( $_POST['idproducto'] != $item['idproducto'] ) {
+				$data[] = $item;
+			}
+		}
+
+		$_SESSION['productos'] = $data;
+		return [ 'resultado' => true, 'data' => $_SESSION['productos'] ];
+		// $_SESSION['productos'] = null;
+		// $data = $_SESSION['productos'];
+		// if( isset( $_SESSION['productos'][ $_POST['index'] ] ) ) {
+		// 	for(  )
+		// 	unset( $_SESSION['productos'][ $_POST['index'] ] );
+		// 	return [ 'resultado' => true, 'data' => $_SESSION['productos'] ];
+		// }
+        // return [ ['resultado' => false] ];
+		// foreach( $_SESSION['productos'] as $item ) {
+		// 	if(  )
+		// }
+
 	}
 
 }
