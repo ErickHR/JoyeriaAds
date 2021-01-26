@@ -8,26 +8,42 @@
 //     })
 // });
 
-function ajax( tipoData,data, callBackSucces = null, callBackError = null) {
+function ajax( tipoData,data, callBackSucces = null, callBackError = null, mensajeSuccess = { valor : true, toast : true }, mensajeError = { valor : true, toast : true } ) {
   $.ajax({
       url: `${window.location.origin}/joyeriaADs/obtenerDatos/obtener${tipoData}.php`,
       type: "POST",
       data: data,
       success: function (res) {
+
           let data = null
           if (typeof res == 'object') {
               data = res
           } else {
               data = JSON.parse(res)
           }
-          if (data.resultado) {
-              if (callBackSucces && typeof callBackSucces == 'function') {
+          if ( data.resultado ) {
+
+              if (callBackSucces && typeof callBackSucces == 'function') 
                   callBackSucces( data.data )
-              }
+              else
+                alerta.mensajeCorrecto( { title:'Correcto', text : data.msg  } )
+
+              
+              if( mensajeSuccess.valor && mensajeSuccess.toast ) 
+                  alerta.mensajeCorrectoToast({ icon : 'success', title : data.msg })
+                
+            
           } else {
-              if (callBackError && typeof callBackSucces == 'function') {
+
+              if (callBackError && typeof callBackSucces == 'function') 
                   callBackError()
-              }
+                  
+              
+              if( mensajeError.valor && mensajeError.toast) 
+                alerta.mensajeCorrectoToast({ icon : 'error', title : data.msg })
+              else
+                alerta.mensajeError( { title:'Error', text : data.msg  } )
+
           }
       }
   });

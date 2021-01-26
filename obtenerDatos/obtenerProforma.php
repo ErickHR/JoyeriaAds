@@ -14,6 +14,9 @@
      } else {
         $nombre_function = 'funct_vista_'.$_GET['accion'];
         if( method_exists($objControlAcceso,$nombre_function ) ){
+            
+            if( $_GET['accion'] == 'Proforma' ) 
+                $_SESSION['productos'] = null;
 
             $regreso = call_user_func( array( $objControlAcceso, $nombre_function) );
 

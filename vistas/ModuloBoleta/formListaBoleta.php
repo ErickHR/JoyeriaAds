@@ -82,9 +82,9 @@ class listaBoleta
                                                                     <td scope="col" data-sort="status" class="sort">Huarancca Rivas, Isaac Erick</th>
                                                                     <td scope="col" data-sort="status" class="sort text-warning">Garantia Caducada</th>
                                                                     <th scope="col">
-                                                                        <button type="button" class="btn btn-primary">
+                                                                        <a href="/joyeriaADs/obtenerDatos/obtenerReclamo.php?accion=reclamo" class="btn btn-primary">
                                                                             <i class="fa fa-times" aria-hidden="true"></i> Generar Reclamo
-                                                                        </button>
+                                                                        </a>
                                                                     </th>
                                                                 </tr>
                                                                 <tr>
@@ -94,9 +94,9 @@ class listaBoleta
                                                                     <td scope="col" data-sort="status" class="sort">Huarancca Rivas, Isaac Erick</th>
                                                                     <td scope="col" data-sort="status" class="sort text-warning">Garantia Activa</th>
                                                                     <th scope="col">
-                                                                        <button type="button" class="btn btn-primary">
+                                                                        <a href="/joyeriaADs/obtenerDatos/obtenerReclamo.php?accion=reclamo" class="btn btn-primary">
                                                                             <i class="fa fa-times" aria-hidden="true"></i> Generar Reclamo
-                                                                        </button>
+                                                                        </a>
                                                                     </th>
                                                                 </tr>
                                                             </tbody>

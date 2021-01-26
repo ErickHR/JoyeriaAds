@@ -29,21 +29,21 @@ class controladorReclamo
         include_once("../vistas/ModuloReclamo/formListaReclamo.php");
         include_once('../componentes/cabecera.php');
 
-        $objProforma = new listaReclamo;
         $objCabecera = new html;
         $objCabecera->cabecera();
-        $objProforma->mostrarListaReclamo();
+        listaReclamo::mostrarListaReclamo();
         $objCabecera->footer('listaReclamo');
     }
 
     public function funct_vista_reclamo()
     {
 
-        include_once("../vistas/ModuloReclamo/formProforma.php");
+        include_once("../vistas/ModuloReclamo/formReclamo.php");
         include_once('../componentes/cabecera.php');
-        $objProforma = new formProforma;
-        html::cabecera();
-        $objProforma->formProformaShow();
-        html::footer('proforma');
+
+        $objCabecera = new html;
+        $objCabecera->cabecera();
+        reclamo::mostrarReclamo();
+        $objCabecera->footer('listaReclamo');
     }
 }

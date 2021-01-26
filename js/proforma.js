@@ -78,6 +78,9 @@ $(document).ready(function () {
                     $('.form-cliente__nombre').val(data.name)
                     $('.btn-add__cliente').trigger('click')
                 })
+            }, 
+            {
+                valor : false
             })
         }
     })
@@ -101,6 +104,9 @@ $(document).ready(function () {
             console.log(data)
             rellenarTablasProductos( data, 'tbody-mostrar__producto' )
             $('.div-mostrar__producto').show()
+        },
+        {
+            valor : false
         } )
     })
 

@@ -54,15 +54,6 @@ class menu
                             </a>
                         </div>
                         <div class="item d-flex">
-                            <a href="/joyeriaADs/obtenerDatos/obtenerReclamo.php?accion=reclamo">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <!-- <i :class="icon"></i> -->
-                                <span class="item-tittle">
-                                    Reclamo
-                                </span>
-                            </a>
-                        </div>
-                        <div class="item d-flex">
                             <a href="/joyeriaADs/obtenerDatos/obtenerReclamo.php?accion=listaReclamo">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                                 <!-- <i :class="icon"></i> -->

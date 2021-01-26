@@ -40,7 +40,17 @@ $(document).ready(function () {
                 targets: 6,
                 data: null,
                 render: function(data, type, full, meta){
-                    return ``
+                    let html = `
+                    <div class="dropdown">
+                        <a class="btn btn-sm btn-icon-only text-light btn-drowpn__title" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow btn-drowpn__description" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-161px, -51px, 0px);">
+                            <a class="dropdown-item" href="/joyeriaADs/obtenerDatos/obtenerBoleta.php?accion=boleta&id=${data.idproforma}">Generar Boleta</a>
+                        </div>
+                    </div>
+                    `
+                    return `${html}`
                     // var menu = "<ul id='popover-content' class='list-group'>"
                     // // var menu = ''
                     // menu += "<a class='a__editar-factura list-group-item' data-id='" + data.id + "'><i class='fa fa-pencil' aria-hidden='true'></i> EDITAR </a>";

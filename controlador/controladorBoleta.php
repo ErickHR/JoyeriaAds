@@ -36,14 +36,19 @@ class controladorBoleta
         $objCabecera->footer('listaBoleta');
     }
 
-    public function funct_vista_reclamo()
+    public function funct_vista_boleta()
     {
 
-        include_once("../vistas/ModuloReclamo/formProforma.php");
+        include_once("../vistas/ModuloBoleta/formBoleta.php");
+        include_once("../modelo/Eproforma.php");
         include_once('../componentes/cabecera.php');
-        $objProforma = new formProforma;
-        html::cabecera();
-        $objProforma->formProformaShow();
-        html::footer('proforma');
+
+        $proforma = new Eproforma;
+        $data = $proforma->funct_buscar_proforma(  $_GET['id'] );
+
+        $objCabecera = new html;
+        $objCabecera->cabecera();
+        Boleta::mostrarBoleta( $data );
+        $objCabecera->footer('boleta');
     }
 }

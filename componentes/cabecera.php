@@ -24,6 +24,8 @@ class html
 
             <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
 
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
             <link rel="stylesheet" href="<?=$ru?>/styles/argon.css">
             <link rel="stylesheet" href="<?=$ru?>/styles/nucleo.css">
             <link rel="stylesheet" href="<?=$ru?>/styles/style.css">
@@ -45,6 +47,10 @@ class html
         ?>
             <script src="<?=$ru?>/js/script.js"></script>
             <script src="<?=$ru?>/js/componentes/menu.js"></script>
+            <script src="<?=$ru?>/js/componentes/AlertasSistema.js"></script>
+            <script>
+                window.alerta = new Alerta()
+            </script>
             <?php if ($scripts != "") { ?>
                 <script src="<?=$ru?>/js/<?php echo $scripts ?>.js"></script>
             <?php } ?>

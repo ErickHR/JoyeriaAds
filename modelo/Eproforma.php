@@ -59,10 +59,19 @@ class Eproforma extends conexion
     
     public function funct_listar_proforma(){
 		$conn = $this -> conectar();
-        $stmt = $conn->prepare("SELECT pro.fecha, pro.idproforma, 
+        $stmt = $conn->prepare("
+        SELECT pro.fecha, pro.idproforma, 
         CONCAT( cli.apell_pat, ' ', cli.apell_mat, ', ', cli.nombre ) cliente, pro.total, 
-        CONCAT( '[', GROUP_CONCAT( JSON_OBJECT( 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', (detal.precio/detal.cantidad), 'total', detal.precio ) SEPARATOR ', ' ) , ']' ) as detal_proforma 
-         FROM proforma pro  LEFT JOIN cliente cli ON cli.idcliente = pro.idcliente  LEFT JOIN trabajador tra ON tra.idtrabajador = pro.idtrabajador LEFT JOIN detalle_proforma detal ON detal.idproforma = pro.idproforma LEFT JOIN producto prod ON prod.idproducto = detal.idproducto  WHERE pro.idtrabajador = ? ");
+        COALESCE( 
+            ( 
+                SELECT CONCAT( '[', 
+        GROUP_CONCAT( JSON_OBJECT( 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', (detal.precio/detal.cantidad), 'total', detal.precio ) SEPARATOR ', ' ) , ']' )
+                FROM detalle_proforma detal
+         		LEFT JOIN producto prod ON ( prod.idproducto = detal.idproducto) WHERE detal.idproforma = pro.idproforma AND detal.iddetalleproforma IS NOT null  ), '' ) as detal_proforma
+         FROM proforma pro  
+         LEFT JOIN cliente cli ON cli.idcliente = pro.idcliente  
+         LEFT JOIN trabajador tra ON tra.idtrabajador = pro.idtrabajador 
+         WHERE pro.idtrabajador = ? ");
         $res = $stmt ->execute( [1] );
         $json = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -73,6 +82,30 @@ class Eproforma extends conexion
             "length" => $stmt->rowCount(),
             "data"=> $json
         );
+
+    }
+
+    public function funct_buscar_proforma( $id ){
+		$conn = $this -> conectar();
+        $stmt = $conn->prepare("
+        SELECT pro.fecha, pro.idproforma, 
+        CONCAT( cli.apell_pat, ' ', cli.apell_mat, ', ', cli.nombre ) cliente, 
+        cli.dni dnicliente, 
+        pro.total, 
+        COALESCE( 
+            ( 
+                SELECT CONCAT( '[', 
+        GROUP_CONCAT( JSON_OBJECT( 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', (detal.precio/detal.cantidad), 'total', detal.precio ) SEPARATOR ', ' ) , ']' )
+                FROM detalle_proforma detal
+         		LEFT JOIN producto prod ON ( prod.idproducto = detal.idproducto) WHERE detal.idproforma = pro.idproforma AND detal.iddetalleproforma IS NOT null  ), '' ) as detal_proforma
+         FROM proforma pro  
+         LEFT JOIN cliente cli ON cli.idcliente = pro.idcliente  
+         LEFT JOIN trabajador tra ON tra.idtrabajador = pro.idtrabajador 
+         WHERE pro.idtrabajador = ? AND pro.idproforma = ? ");
+        $res = $stmt ->execute( [ 1, $id ] );
+        $json = $stmt->fetchAll(PDO::FETCH_OBJ);
+        
+        return $json;
 
     }
     
