@@ -4,8 +4,8 @@ class controladorBoleta
     public function boleta()
     {
 
-        include_once("../modelo/Eproforma.php");
-        $objCliente = new Eproforma;
+        include_once("../modelo/Eboleta.php");
+        $objCliente = new EBoleta;
         $nombre_function = 'funct_' . $_REQUEST['accion'];
 
         if (method_exists($objCliente, $nombre_function)) {
@@ -45,7 +45,10 @@ class controladorBoleta
 
         $proforma = new Eproforma;
         $data = $proforma->funct_buscar_proforma(  $_GET['id'] );
-
+        if( isset( $_SESSION['productos'] ) ) {
+            $_SESSION['productos'] = null;
+        } 
+        $_SESSION['productos'] = json_decode($data[0]->detal_proforma) ;
         $objCabecera = new html;
         $objCabecera->cabecera();
         Boleta::mostrarBoleta( $data );

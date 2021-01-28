@@ -37,8 +37,8 @@ class Proforma
                                                     <div class="col-6 col-sm-12 col-md-6">
                                                         <div class="list-group list-group-flush ">
                                                             <div class="form-group focused">
-                                                                <label class="form-control-label" for="input-name">Nro</label>
-                                                                <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary buscar-proforma__numero" placeholder="Nro" value="" required="" autofocus="">
+                                                                <label class="form-control-label" for="buscar-proforma__numero">Nro</label>
+                                                                <input type="text" name="name" id="buscar-proforma__numero" class="form-control form-control-alternative bg-secondary buscar-proforma__numero" placeholder="Nro" value="" required="" autofocus="">
                                                             </div>
                                                         </div>
                                                     </div>

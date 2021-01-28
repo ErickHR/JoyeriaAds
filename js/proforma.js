@@ -1,67 +1,17 @@
 let producto = null
 let cliente = null
 
-function rellenarTablasProductos( data, _clase ) {
-
-    let html = ``
-
-    data.forEach( ( item, index ) => {
-        html += `
-        <tr>
-            <th scope="row">
-                ${ item.cod_producto }
-            </th>
-            <td>
-                ${ item.nombre }
-            </td>
-            <td>
-                <button class="btn btn-ligth bg-secondary btn-choose__producto" data-valor='${ JSON.stringify( item ) }'><i class="fa fa-plus" aria-hidden="true"></i> </button>
-            </td>
-        </tr>
-        `
-    } )
-
-    $(`.${_clase}`).html( html )
-
-}
-
-function rellenarListaTablasProductos( data, _clase ) {
-
-    let html = ``
-
-    data.forEach( ( item, index ) => {
-        html += `
-            <tr>
-                <td scope="col" data-sort="name" class="sort">${index+1}</th>
-                <td scope="col" data-sort="name" class="sort">${item.nombre}</th>
-                <td scope="col" data-sort="budget" class="sort">${item.descripcion}</th>
-                <td scope="col" data-sort="status" class="sort">${item.cantidad}</th>
-                <td scope="col" data-sort="status" class="sort">${item.precio}</th>
-                <td scope="col" data-sort="status" class="sort">${item.total}</th>
-                <th scope="col">
-                    <button type="button" class="btn btn-light btn-delete__producto" data-producto='${ JSON.stringify( item ) }' data-index="${index}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </th>
-            </tr>
-        `
-    } )
-
-    $(`.${_clase}`).html( html )
-
-}
-
 $(document).ready(function () {
 
     $(document).on('keyup', '.form-create__input-dni', function () {
         let valor = $(this).val()
         if (valor.length == 8 && !isNaN( valor )) {
             let data = {
-                accion: 'obtenerCliente',
+                accion: 'cliente_obtener',
                 dni: valor
             }
             ajax( 'Cliente', data, (data) => {
-                $('.form-create__cite-nombre').html(`<cite title="Nombre del cliente y/o empresa">${data[0].nombreCompleto}</cite>`)
+                $('.form-create__cite-nombre').html(`<cite title="Nombre del cliente y/o empresa">${data[0].apellMat} ${data[0].apellPat}, ${data[0].nombre}</cite>`)
                 $('.form-create__div-mostrar-nombre').show()
                 cliente = data[0].idcliente
             }, () => {
@@ -81,11 +31,15 @@ $(document).ready(function () {
             }, 
             {
                 valor : false
+            }, 
+            {
+                valor : false
             })
         }
     })
 
     $(document).on('click', '.btn-add__cliente', function () {
+        console.log('entro')
         $('.div-add__cliente').toggleClass('d-none')
     })
 
@@ -100,10 +54,12 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.btn-search__producto', function(){
-        ajax( 'Producto', {accion : 'buscar_producto_todos' }, ( data ) => {
-            console.log(data)
+        ajax( 'Producto', {accion : 'buscar_producto_lista', nombre : $('.input-mostrar__producto').val() }, ( data ) => {
             rellenarTablasProductos( data, 'tbody-mostrar__producto' )
             $('.div-mostrar__producto').show()
+        },
+        {
+            valor : false
         },
         {
             valor : false
@@ -113,7 +69,7 @@ $(document).ready(function () {
     $(document).on('click', '.btn-choose__producto', function(){
         let jsons =  $(this).data('valor')
         producto = {...jsons}
-        $('.input-mostrar__producto').val( jsons.cod_producto )
+        $('.input-mostrar__producto').val( jsons.codProducto )
         $('.div-mostrar__producto').hide()
         // console.log( tr.Event )
         // console.log( $(this).parent() )
@@ -134,6 +90,8 @@ $(document).ready(function () {
         data.cantidad = $( '.input-cantidad__producto' ).val()
         ajax( 'Producto', data, ( data ) => {
             rellenarListaTablasProductos( data, 'tbody-lista__productos' )
+            $( '.input-cantidad__producto' ).val('')
+            $( '.input-cantidad__producto' ).val('')
         } )
     })
 
@@ -151,8 +109,10 @@ $(document).ready(function () {
     $(document).on('click', '.btn-form-registrar__proforma', function(){
         let data = {}
         data.cliente = {...cliente}
-        data.accion = 'registrar_proforma'
-        ajax( 'Proforma', data)
+        data.accion = 'proforma_registrar'
+        ajax( 'Proforma', data, ()=>{
+            window.location.href = 'http://localhost/joyeriaADs/obtenerDatos/obtenerProforma.php?accion=Proforma'
+        })
     })
 
 });

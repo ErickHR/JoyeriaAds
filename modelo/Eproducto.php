@@ -10,8 +10,8 @@ class Eproducto extends conexion
 	{
 		try{
 			$conn = $this -> conectar();
-			$stmt = $conn->prepare("SELECT * FROM producto LIMIT 0, 5");
-			$stmt ->execute();
+			$stmt = $conn->prepare("SELECT * FROM producto WHERE cod_producto like ? OR nombre LIKE ? OR descripcion LIKE ?  LIMIT 0, 5");
+			$stmt ->execute( [ '%'.$_POST['nombre'].'%', '%'.$_POST['nombre'].'%', '%'.$_POST['nombre'].'%' ] );
 			$json = $stmt->fetchAll(PDO::FETCH_OBJ);
 			if( $stmt->rowCount() >= 1 ) {
 				return [ 'resultado' => true, 'data' => $json ];

@@ -18,11 +18,11 @@ $(document).ready(function () {
             "url": `${window.location.origin}/joyeriaADs/obtenerDatos/obtenerProforma.php`,
             "type": "POST",
             "data": function (d) {
-                d.accion ="listar_proforma"
-                d.numero ="buscar-proforma__numero"
-                d.dni ="buscar-proforma__dni"
-                d.desde ="buscar-proforma__fecha-desde"
-                d.hasta ="buscar-proforma__fecha-hasta"
+                d.accion = "listar_proforma"
+                d.numero = $(".buscar-proforma__numero").val()
+                d.dni = $(".buscar-proforma__dni").val()
+                d.desde = $('.buscar-proforma__fecha-desde').val()
+                d.hasta = $(".buscar-proforma__fecha-hasta").val()
             },
             dataSrc :  function(json){
 
@@ -46,7 +46,8 @@ $(document).ready(function () {
                             <i class="fas fa-ellipsis-v"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow btn-drowpn__description" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-161px, -51px, 0px);">
-                            <a class="dropdown-item" href="/joyeriaADs/obtenerDatos/obtenerBoleta.php?accion=boleta&id=${data.idproforma}">Generar Boleta</a>
+                            <a class="dropdown-item" href="/joyeriaADs/obtenerDatos/obtenerBoleta.php?accion=boleta&id=${data.idproforma}"> <i class="fa fa-print" aria-hidden="true"></i> Generar Boleta</a>
+                            <a class="dropdown-item btn-delete__proforma" href="#" data-id="${data.idproforma}"> <i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
                         </div>
                     </div>
                     `
@@ -97,7 +98,6 @@ $(document).ready(function () {
                 targets: 4,
                 data: null,
                 render: function(data, type, full, meta){
-                    console.log( JSON.parse(data.detal_proforma) )
                     let html = `
                         <button type="button" class="btn btn-mostrar__detalle-proforma" data-toggle="modal" data-target="#mostrarDetalle" data-valor='${data.detal_proforma}'>
                             <i class="fa fa-eye" aria-hidden="true"></i> <span class="badge badge-primary"> Mostrar </span>
@@ -134,5 +134,12 @@ $(document).ready(function () {
     //   $('#myModal').on('shown.bs.modal', function () {
     //     $('#myInput').trigger('focus')
     //   })
+
+    $( document ).on('click', '.btn-delete__proforma', function( e ) {
+        e.preventDefault();
+        ajax( 'Proforma', { accion : 'eliminar_proforma', id : $(this).data('id') }, ()=>{
+            tableFactura.ajax.reload()
+        } )
+    })
 
 })

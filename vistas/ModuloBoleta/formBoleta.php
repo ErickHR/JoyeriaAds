@@ -1,4 +1,5 @@
 <?php
+include_once('../componentes/estilos.php');
 include_once('../componentes/nav_bar.php');
 
 class Boleta
@@ -6,11 +7,12 @@ class Boleta
 
     public static function mostrarBoleta($data)
     {
+?>
+        <?php
         include_once('../componentes/menu.php');
         $menu = new menu;
         $menu->sideBar();
-
-?>
+        ?>
         <div id="app">
             <div class="w-100 position-relative">
                 <div id="origin" class="z-index-9 origin position-absolute left-0 top-0 w-100">
@@ -29,12 +31,118 @@ class Boleta
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-12 col-sm-12 col-md-12">
+                                                    <div class="col-12">
                                                         <div class="list-group list-group-flush ">
                                                             <div class="form-group focused">
                                                                 <label class="form-control-label" for="input-name">DNI</label>
-                                                                <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="DNI" value="<?= $data[0]->dnicliente ?>" required="" autofocus="">
-                                                                <label class="form-control-label" for="input-name">NOMBRE: </label><cite title="Source Title"><?= $data[0]->dnicliente ?></cite>
+                                                                <div class="input-group input-group-alternative">
+                                                                    <input class="form-control form-control-alternative bg-secondary form-create__input-dni" value="<?= $data[0]->dnicliente ?>" placeholder="DNI" type="text">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text bg-secondary cursor-pointer btn-search__cliente"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                                        <span class="input-group-text bg-secondary cursor-pointer btn-add__cliente" style="display: none;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-create__div-mostrar-nombre">
+                                                                    <div class="d-flex">
+                                                                        <label class="form-control-label" for="input-name">NOMBRE: </label>
+                                                                        <div class="form-create__cite-nombre">
+                                                                            <cite title="Nombre del cliente y/o empresa"><?= $data[0]->cliente ?></cite>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row div-add__cliente d-none">
+                                                    <div class="col-12">
+                                                        <div class="d-flex">
+                                                            <div class="card mx-auto">
+                                                                <form action="" method="post" class="form-create__cliente" id="form-create__cliente">
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">DNI</label>
+                                                                                        <input class="form-control form-control-alternative bg-secondary form-cliente__dni" name="dni" placeholder="DNI" type="NUMBER">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">NOMBRE</label>
+                                                                                        <input class="form-control form-control-alternative bg-secondary form-cliente__nombre" name="nombre" placeholder="NOMBRE" type="text">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">APELLIDO PATERNO</label>
+                                                                                        <input class="form-control form-control-alternative bg-secondary form-cliente__paterno" name="paterno" placeholder="APELLIDO PATERNO" type="text">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">APELLIDO MATERNO</label>
+                                                                                        <input class="form-control form-control-alternative bg-secondary form-cliente__materno" name="materno" placeholder="APELLIDO MATERNO" type="text">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <label class="form-control-label" for="input-name">UBIGEO</label>
+                                                                            <div class="col-12 col-sm-4 col-md-4">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">DEPARTAMENTO</label>
+                                                                                        <select name="" class="form-control form-control-alternative bg-secondary">
+                                                                                            <option value="1">Lima</option>
+                                                                                            <option value="2">Pasco</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-4 col-md-4">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">PROVINCIA</label>
+                                                                                        <select name="" class="form-control form-control-alternative bg-secondary">
+                                                                                            <option value="1">Huarochiri</option>
+                                                                                            <option value="2">Huarura</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-4 col-md-4">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused">
+                                                                                        <label class="form-control-label" for="input-name">DISTRITO</label>
+                                                                                        <select name="" class="form-control form-control-alternative bg-secondary">
+                                                                                            <option value="1">Villa el salvador</option>
+                                                                                            <option value="2">Santa Anita</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-4">
+                                                                            <div class="col-12">
+                                                                                <div class="list-group list-group-flush ">
+                                                                                    <div class="form-group focused d-flex">
+                                                                                        <button type="sumit" class="btn btn-lg col-sm-12 col-md-6 btn-primary mx-auto"> Guardar</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -47,19 +155,19 @@ class Boleta
                                                                     <div class="form-group focused">
                                                                         <label class="form-control-label" for="input-name">PRODUCTO</label>
                                                                         <div class="input-group input-group-alternative">
-                                                                            <input class="form-control form-control-alternative bg-secondary" placeholder="PRODUCTO" type="text">
+                                                                            <input class="form-control form-control-alternative bg-secondary input-mostrar__producto" placeholder="PRODUCTO" type="text">
                                                                             <div class="input-group-prepend">
-                                                                                <span class="input-group-text bg-secondary cursor-pointer"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                                                <span class="input-group-text bg-secondary cursor-pointer btn-search__producto"><i class="fa fa-search" aria-hidden="true"></i></span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row div-mostrar__producto" style="display: none;">
                                                             <div class="col-12">
                                                                 <div class="table-responsive">
-                                                                    <table class="table align-items-center table-flush">
+                                                                    <table class="table align-items-center table-flush tabla-choose__producto">
                                                                         <thead class="thead-light">
                                                                             <tr>
                                                                                 <th scope="col">Código</th>
@@ -67,30 +175,8 @@ class Boleta
                                                                                 <th scope="col"></th>
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    prod_001
-                                                                                </th>
-                                                                                <td>
-                                                                                    joya 1
-                                                                                </td>
-                                                                                <td>
-                                                                                    <button class="btn btn-ligth bg-secondary"><i class="fa fa-plus" aria-hidden="true"></i> </button>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    prod_002
-                                                                                </th>
-                                                                                <td>
-                                                                                    joya 2
-                                                                                </td>
-                                                                                <td>
-                                                                                    <button class="btn btn-ligth bg-secondary"><i class="fa fa-plus" aria-hidden="true"></i> </button>
+                                                                        <tbody class="tbody-mostrar__producto">
 
-                                                                                </td>
-                                                                            </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -103,7 +189,7 @@ class Boleta
                                                                 <div class="list-group list-group-flush ">
                                                                     <div class="form-group focused">
                                                                         <label class="form-control-label" for="input-name">CANTIDAD</label>
-                                                                        <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="CANTIDAD" value="" required="" autofocus="">
+                                                                        <input type="number" name="name" id="input-name" class="form-control form-control-alternative bg-secondary input-cantidad__producto" placeholder="CANTIDAD" value="" required="" autofocus="">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -116,30 +202,7 @@ class Boleta
                                                             <div class="form-group focused">
                                                                 &nbsp;
                                                                 <br>
-                                                                <button type="button" class="btn col-sm-12 col-sm-12 btn-warning mx-auto"><i class="fa fa-save" aria-hidden="true"></i> Guardar Producto</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-5">
-                                                    <div class="col-8">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <label class="form-control-label" for="input-name">TIPO DE PAGO</label>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-6 col-md-6">
-                                                                    <div class="custom-control custom-radio mb-3">
-                                                                        <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                                                                        <label class="custom-control-label" for="customRadio6">Parcial</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-6 col-md-6">
-                                                                    <div class="custom-control custom-radio mb-3">
-                                                                        <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                                                                        <label class="custom-control-label" for="customRadio6">Total</label>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn col-sm-12 col-sm-12 btn-warning mx-auto btn-save__producto"><i class="fa fa-save" aria-hidden="true"></i> Guardar Producto</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -148,7 +211,7 @@ class Boleta
                                                     <div class="col-12">
                                                         <div class="list-group list-group-flush ">
                                                             <div class="form-group focused d-flex">
-                                                                <button type="button" class="btn btn-lg col-sm-12 col-md-6 btn-danger mx-auto"> Generar Boleta</button>
+                                                                <button type="button" class="btn btn-lg col-sm-12 col-md-6 btn-danger mx-auto btn-form-registrar__boleta"> Registrar</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -158,6 +221,7 @@ class Boleta
                                         <div class="card">
                                             <div class="card-header">
                                                 Lista de Proformas
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -171,24 +235,26 @@ class Boleta
                                                                     <th scope="col" data-sort="status" class="sort">Cantidad</th>
                                                                     <th scope="col">Precio Unitario</th>
                                                                     <th scope="col">Precio Total</th>
-                                                                    <th scope="col"></th>
+                                                                    <th></th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody class="list">
-                                                                <?php foreach( json_decode($data[0]->detal_proforma) as $item ) { ?>
-                                                                <tr>
-                                                                    <td scope="col" data-sort="name" class="sort">1</th>
-                                                                    <td scope="col" data-sort="name" class="sort">joyas</th>
-                                                                    <td scope="col" data-sort="budget" class="sort">----</th>
-                                                                    <td scope="col" data-sort="status" class="sort">1</th>
-                                                                    <td scope="col" data-sort="status" class="sort">20</th>
-                                                                    <th scope="col">
-                                                                        <button type="button" class="btn btn-light">
-                                                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </th>
-                                                                </tr>
-                                                                <?php } ?>
+                                                            <tbody class="list tbody-lista__productos">
+
+                                                                <?php foreach (json_decode($data[0]->detal_proforma) as $value => $item) { ?>
+                                                                    <tr>
+                                                                        <td><?= $value + 1 ?></td>
+                                                                        <td><?= $item->nombre ?></td>
+                                                                        <td><?= $item->descripcion ?></td>
+                                                                        <td><?= $item->cantidad ?></td>
+                                                                        <td><?= $item->precio ?></td>
+                                                                        <td><?= $item->total ?></td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-light btn-delete__producto" data-producto='${ JSON.stringify( item ) }' data-index="${index}">
+                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php  } ?>
                                                             </tbody>
                                                         </table>
                                                     </div>

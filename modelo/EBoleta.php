@@ -1,14 +1,13 @@
 <?php
 include_once('../conexion/conexion.php');
-class Eproforma extends conexion
+class EBoleta extends conexion
 {
 	public function Ecliente()
 	{
 		$this -> conectar();
 	}
 	
-	public function funct_registrar_proforma(){
-        // return $_SESSION['productos'];
+	public function funct_registrar_boleta(){
         date_default_timezone_set('America/Lima');
         $hora = strtotime( '-1 hour', strtotime( date('Y-m-d H:i:s') )  );
         date('Y-m-d H:i:s', $hora);
@@ -16,11 +15,11 @@ class Eproforma extends conexion
             $total = 0;
 
             foreach( $_SESSION['productos'] as $item ) {
-                $total += $item['total'];
+                $total += $item->total;
             }
 
 			$conn = $this -> conectar();
-            $stmt = $conn->prepare("INSERT INTO proforma( idcliente, idtrabajador, fecha, total ) VALUES ( ?, ?, ?, ? ) ");
+            $stmt = $conn->prepare("INSERT INTO boleta( id_cliente, id_trabajador, fecha, total ) VALUES ( ?, ?, ?, ? ) ");
             
 
 			$res = $stmt ->execute( 
@@ -32,32 +31,30 @@ class Eproforma extends conexion
                 ] 
                 );
 
-            $idProforma = $conn->lastInsertId();
-            
-            $stmt = $conn->prepare("INSERT INTO detalle_proforma( idproforma , idproducto , cantidad, precio ) VALUES ( ?, ?, ?, ? ) ");
-
+            $idBoleta = $conn->lastInsertId();
+            $stmt = $conn->prepare("INSERT INTO detalle_boleta( idboleta , idproducto , cantidad, precio ) VALUES ( ?, ?, ?, ? ) ");
             foreach( $_SESSION['productos'] as $item ) {
                 $res = $stmt ->execute( 
                     [ 
-                        $idProforma, 
-                        $item['idproducto'], 
-                        $item['cantidad'], 
-                        $item['precio']
+                        1, 
+                        $item->idproducto, 
+                        $item->cantidad, 
+                        $item->precio
                     ] 
                     );
             }
 
 			if( $res ) {
                 $_SESSION['productos'] = null;
-				return [ 'resultado' => true , "msg" => "Proforma Guardada"];
+				return [ 'resultado' => true , "msg" => "Boleta Guardada"];
 			}
 			return [ ['resultado' => false] ];
 		}catch( Exception $e ){
-
+            return [ ['resultado' => false, "msg" =>  $e->getMessage()] ];
 		}
     }
     
-    public function funct_listar_proforma(){
+    public function funct_listar_boleta(){
         $conn = $this -> conectar();
         $where = [];
         $where[] = 1;
@@ -75,7 +72,7 @@ class Eproforma extends conexion
         COALESCE( 
             ( 
                 SELECT CONCAT( '[', 
-        GROUP_CONCAT( JSON_OBJECT( 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', detal.precio, 'total', (detal.precio*detal.cantidad) ) SEPARATOR ', ' ) , ']' )
+        GROUP_CONCAT( JSON_OBJECT( 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', (detal.precio/detal.cantidad), 'total', detal.precio ) SEPARATOR ', ' ) , ']' )
                 FROM detalle_proforma detal
          		LEFT JOIN producto prod ON ( prod.idproducto = detal.idproducto) WHERE detal.idproforma = pro.idproforma AND detal.iddetalleproforma IS NOT null  ), '' ) as detal_proforma
          FROM proforma pro  
@@ -96,7 +93,7 @@ class Eproforma extends conexion
 
     }
 
-    public function funct_buscar_proforma( $id ){
+    public function funct_buscar_boleta( $id ){
 		$conn = $this -> conectar();
         $stmt = $conn->prepare("
         SELECT pro.fecha, pro.idproforma, 
@@ -106,7 +103,7 @@ class Eproforma extends conexion
         COALESCE( 
             ( 
                 SELECT CONCAT( '[', 
-        GROUP_CONCAT( JSON_OBJECT( 'idproducto', prod.idproducto, 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', detal.precio, 'total', (detal.precio*detal.cantidad)  ) SEPARATOR ', ' ) , ']' )
+        GROUP_CONCAT( JSON_OBJECT( 'nombre', prod.nombre, 'cantidad', detal.cantidad, 'descripcion', prod.descripcion, 'precio', (detal.precio/detal.cantidad), 'total', detal.precio ) SEPARATOR ', ' ) , ']' )
                 FROM detalle_proforma detal
          		LEFT JOIN producto prod ON ( prod.idproducto = detal.idproducto) WHERE detal.idproforma = pro.idproforma AND detal.iddetalleproforma IS NOT null  ), '' ) as detal_proforma
          FROM proforma pro  
@@ -120,7 +117,7 @@ class Eproforma extends conexion
 
     }
 
-    public function funct_eliminar_proforma(){
+    public function funct_eliminar_boleta(){
         // return $_POST['id'];
         $conn = $this -> conectar();
         $stmt = $conn->prepare("

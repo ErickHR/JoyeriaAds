@@ -28,21 +28,22 @@ function ajax( tipoData,data, callBackSucces = null, callBackError = null, mensa
               else
                 alerta.mensajeCorrecto( { title:'Correcto', text : data.msg  } )
 
-              
-              if( mensajeSuccess.valor && mensajeSuccess.toast ) 
-                  alerta.mensajeCorrectoToast({ icon : 'success', title : data.msg })
-                
+                if( mensajeSuccess.valor ){
+                    if( mensajeSuccess.toast ) 
+                        alerta.mensajeCorrectoToast({ icon : 'success', title : data.msg })
+                }
             
           } else {
 
-              if (callBackError && typeof callBackSucces == 'function') 
+              if (callBackError && typeof callBackError == 'function') 
                   callBackError()
                   
-              
-              if( mensajeError.valor && mensajeError.toast) 
-                alerta.mensajeCorrectoToast({ icon : 'error', title : data.msg })
-              else
-                alerta.mensajeError( { title:'Error', text : data.msg  } )
+              if( mensajeError.valor ) {
+                if( mensajeError.toast) 
+                    alerta.mensajeCorrectoToast({ icon : 'error', title : data.msg })
+                else
+                    alerta.mensajeError( { title:'Error', text : data.msg  } )
+                }
 
           }
       }
@@ -86,8 +87,31 @@ function rellenarListaTablasProductos( data, _clase ) {
 
 }
 
-function rellenarListaTablasProductosSinAcciones( data, _clase ) {
+function rellenarTablasProductos( data, _clase ) {
 
+    let html = ``
+
+    data.forEach( ( item, index ) => {
+        html += `
+        <tr>
+            <th scope="row">
+                ${ item.codProducto }
+            </th>
+            <td>
+                ${ item.nombre }
+            </td>
+            <td>
+                <button class="btn btn-ligth bg-secondary btn-choose__producto" data-valor='${ JSON.stringify( item ) }'><i class="fa fa-plus" aria-hidden="true"></i> </button>
+            </td>
+        </tr>
+        `
+    } )
+
+    $(`.${_clase}`).html( html )
+
+}
+
+function rellenarListaTablasProductosSinAcciones( data, _clase ) {
     let html = ``
 
     data.forEach( ( item, index ) => {
