@@ -12,6 +12,10 @@ class ProductoDao {
         try{
 			$stmt = Consultas::select( '*', 'producto WHERE idproducto = :id AND status = 1 ', [ ':id' => $id ] );
 
+			if( count( $stmt ) == 0 ) {
+				return null;
+			}
+
 			$producto = new Producto( 
 				$stmt[0]->idproducto,
 				$stmt[0]->cod_producto,

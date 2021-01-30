@@ -36,7 +36,7 @@ class Boleta
                                                             <div class="form-group focused">
                                                                 <label class="form-control-label" for="input-name">DNI</label>
                                                                 <div class="input-group input-group-alternative">
-                                                                    <input class="form-control form-control-alternative bg-secondary form-create__input-dni" value="<?= $data[0]->dnicliente ?>" placeholder="DNI" type="text">
+                                                                    <input class="form-control form-control-alternative bg-secondary form-create__input-dni" value="<?= $data->cliente->getDni() ?>" placeholder="DNI" type="text">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text bg-secondary cursor-pointer btn-search__cliente"><i class="fa fa-search" aria-hidden="true"></i></span>
                                                                         <span class="input-group-text bg-secondary cursor-pointer btn-add__cliente" style="display: none;"><i class="fa fa-plus" aria-hidden="true"></i></span>
@@ -46,7 +46,7 @@ class Boleta
                                                                     <div class="d-flex">
                                                                         <label class="form-control-label" for="input-name">NOMBRE: </label>
                                                                         <div class="form-create__cite-nombre">
-                                                                            <cite title="Nombre del cliente y/o empresa"><?= $data[0]->cliente ?></cite>
+                                                                            <cite title="Nombre del cliente y/o empresa"><?= $data->cliente->getApellPat()." ".$data->cliente->getApellMat().", ".$data->cliente->getNombre() ?></cite>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -240,14 +240,14 @@ class Boleta
                                                             </thead>
                                                             <tbody class="list tbody-lista__productos">
 
-                                                                <?php foreach (json_decode($data[0]->detal_proforma) as $value => $item) { ?>
+                                                                <?php foreach ( $data->detalle as $value => $item) { ?>
                                                                     <tr>
                                                                         <td><?= $value + 1 ?></td>
-                                                                        <td><?= $item->nombre ?></td>
-                                                                        <td><?= $item->descripcion ?></td>
-                                                                        <td><?= $item->cantidad ?></td>
-                                                                        <td><?= $item->precio ?></td>
-                                                                        <td><?= $item->total ?></td>
+                                                                        <td><?= "erick" ?></td>
+                                                                        <td><?= "erick" ?></td>
+                                                                        <td><?= $item->getCantidad() ?></td>
+                                                                        <td><?= $item->getPrecio() ?></td>
+                                                                        <td><?= $item->getCantidad() * $item->getPrecio() ?></td>
                                                                         <td>
                                                                             <button type="button" class="btn btn-light btn-delete__producto" data-producto='${ JSON.stringify( item ) }' data-index="${index}">
                                                                                 <i class="fa fa-trash" aria-hidden="true"></i>

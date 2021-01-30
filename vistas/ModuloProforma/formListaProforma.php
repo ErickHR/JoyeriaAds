@@ -3,10 +3,10 @@
 include_once('../componentes/estilos.php');
 include_once('../componentes/nav_bar.php');
 
-class Proforma
+class ProformaLista
 {
 
-    public function mostrarListaPreguia()
+    public static function proformaListaMostrar()
     {
 ?>
 

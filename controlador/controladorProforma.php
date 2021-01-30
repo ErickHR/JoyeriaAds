@@ -1,4 +1,9 @@
 <?php
+
+include_once("../modelo/Dao/ProformaDao.php");
+include_once("../modelo/Dao/ProformaDetalleDao.php");
+
+
 class controladorProforma
 {
 	public function proforma()
@@ -27,7 +32,6 @@ class controladorProforma
     }
 
     public function funct_proforma_registrar(){
-
         $total = 0;
 
         foreach( $_SESSION['productos'] as $item ) {
@@ -35,6 +39,49 @@ class controladorProforma
         }
 
         $_POST['total'] = $total;
+
+
+        $idProforma = ProformaDao::proformaRegistrar( $_POST );
+
+
+        foreach( $_SESSION['productos'] as $item ) {
+            $item['idProforma'] = $idProforma;
+            
+            $detalleProforma = ProformaDetalleDao::proformaDetalleRegistrar( $item );
+
+        }
+
+        if( $detalleProforma ) {
+            $_SESSION['productos'] = null;
+            return [ 'resultado' => true , "msg" => "Proforma Guardada"];
+        }
+        return [ ['resultado' => false] ];
+
+    }
+
+    public function funct_proforma_listar(){
+
+        $stmt = ProformaDao::proformaListar( $_POST );
+
+        return Array(
+            "draw"=> 2,
+            "recordsTotal"=> count($stmt),
+            "recordsFiltered"=> count( $stmt ),
+            "length" => count( $stmt ),
+            "data"=> $stmt
+        );
+
+    }
+
+    public function funct_proforma_eliminar(){
+        
+        $stmt = ProformaDao::proformaEliminar( $_POST['id'] );
+
+        if( $stmt ) {
+            return [ 'resultado' => true , "msg" => "Proforma Eliminada"];
+        }
+        return [ ['resultado' => false] ];
+
 
     }
     
@@ -44,11 +91,9 @@ class controladorProforma
             include_once("../vistas/ModuloProforma/formListaProforma.php");
             include_once('../componentes/cabecera.php');
             
-            $objProforma = new Proforma;
-            $objCabecera = new html;
-            $objCabecera -> cabecera();
-            $objProforma -> mostrarListaPreguia();
-            $objCabecera -> footer('listaProforma');
+            html::cabecera();
+            ProformaLista::proformaListaMostrar();
+            html::footer('listaProforma');
             
     }
 

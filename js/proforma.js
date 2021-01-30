@@ -13,7 +13,7 @@ $(document).ready(function () {
             ajax( 'Cliente', data, (data) => {
                 $('.form-create__cite-nombre').html(`<cite title="Nombre del cliente y/o empresa">${data[0].apellMat} ${data[0].apellPat}, ${data[0].nombre}</cite>`)
                 $('.form-create__div-mostrar-nombre').show()
-                cliente = data[0].idcliente
+                cliente = data[0].idCliente
             }, () => {
 
                 $('.btn-search__cliente').hide()

@@ -12,20 +12,20 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ordering: false,
-        bFilter:false,
+        bFilter: false,
         scrollX: true,
         ajax: {
             "url": `${window.location.origin}/joyeriaADs/obtenerDatos/obtenerProforma.php`,
             "type": "POST",
             "data": function (d) {
-                d.accion = "listar_proforma"
+                d.accion = "proforma_listar"
                 d.numero = $(".buscar-proforma__numero").val()
                 d.dni = $(".buscar-proforma__dni").val()
                 d.desde = $('.buscar-proforma__fecha-desde').val()
                 d.hasta = $(".buscar-proforma__fecha-hasta").val()
             },
             dataSrc :  function(json){
-
+                console.log(json)
                 let data = json.data
 
                 data.forEach( (item, index) => {
@@ -137,7 +137,7 @@ $(document).ready(function () {
 
     $( document ).on('click', '.btn-delete__proforma', function( e ) {
         e.preventDefault();
-        ajax( 'Proforma', { accion : 'eliminar_proforma', id : $(this).data('id') }, ()=>{
+        ajax( 'Proforma', { accion : 'proforma_eliminar', id : $(this).data('id') }, ()=>{
             tableFactura.ajax.reload()
         } )
     })

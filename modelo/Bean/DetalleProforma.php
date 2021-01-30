@@ -8,6 +8,20 @@ class DetalleProforma {
     private $cantidad;
     private $precio;
 
+    public function __construct(
+        $idDetalleProforma,
+        $idProforma,
+        $idProducto,
+        $cantidad,
+        $precio )
+    {
+        $this->$idDetalleProforma = $idDetalleProforma;
+        $this->$idProforma = $idProforma;
+        $this->$idProducto = $idProducto;
+        $this->$cantidad = $cantidad;
+        $this->$precio = $precio;
+    }
+
     public function getIdDetalleProforma(){
         return $this->idDetalleProforma;
     }

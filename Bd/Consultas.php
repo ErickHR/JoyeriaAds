@@ -12,27 +12,30 @@ class Consultas{
             $stmt = $conn->prepare( "SELECT $selects FROM $instruc");
             
             foreach( $arrayWhere as $key => $item ) {
-                $stmt->bindParam( $key, $item );
+                $stmt->bindValue( $key, $item );
             }
 
-			$stmt ->execute();
+            $stmt ->execute();
 			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}catch( Exception $e ){
             echo $e->getMessage();
 		}
     }
 
-    public static function insert( $select, $instruc, $arrayWhere ) {
+    public static function insert( $table, $insert ) {
         try{
 			$conn = Conexion::getInstance()->connect();
-            $stmt = $conn->prepare( "SELECT $select FROM $instruc ");
-            
-            foreach( $arrayWhere as $key => $item ) {
-                $stmt->bindParam( $key, $item );
-            }
 
+            $names = implode( ', ', array_keys( $insert ) );
+            $values = ':'.implode(', :', array_keys( $insert ) );
+
+            $stmt = $conn->prepare( "INSERT INTO $table ($names) VALUES ( $values )");
+            
+            foreach( $insert as $key => $item ) {
+                $stmt->bindParam( ":$key", $item );
+            }
 			$stmt ->execute();
-			return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->execute();
 		}catch( Exception $e ){
 
 		}
@@ -50,6 +53,7 @@ class Consultas{
             foreach( $insert as $key => $item ) {
                 $stmt->bindParam( ":$key", $item );
             }
+			$stmt ->execute();
 
 			return $conn->lastInsertId();
 		}catch( Exception $e ){

@@ -15,6 +15,7 @@ class Cliente {
         $this->nombre = $nombre;
         $this->apellMat = $apellMat;
         $this->apellPat = $apellPat;
+        $this->dni = $dni;
         $this->celular = $celular;
     }
 

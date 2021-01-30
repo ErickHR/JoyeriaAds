@@ -6,9 +6,24 @@ class Proforma {
     private $idCliente;
     private $idTrabajador;
     private $fecha;
-    private $estado;
     private $total;
     private $adelanto;
+
+    public function __construct(
+        $idProforma,
+        $idCliente,
+        $idTrabajador,
+        $fecha,
+        $total,
+        $adelanto
+    ){
+        $this->idProforma = $idProforma;
+        $this->idCliente = $idCliente;
+        $this->idTrabajador = $idTrabajador;
+        $this->fecha = $fecha;
+        $this->total = $total;
+        $this->adelanto = $adelanto;
+    }
 
     public function getIdProforma(){
         return $this->idProforma;
