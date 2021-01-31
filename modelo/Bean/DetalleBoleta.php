@@ -1,32 +1,32 @@
 <?php
 
-class DetalleProforma {
+class DetalleBoleta {
 
-    private $idDetalleProforma;
-    private $idProforma;
+    private $idDetalleBoleta;
+    private $idBoleta;
     private $idProducto;
     private $cantidad;
     private $precio;
 
     public function __construct(
-        $idDetalleProforma,
-        $idProforma,
+        $idDetalleBoleta,
+        $idBoleta,
         $idProducto,
         $cantidad,
         $precio )
     {
-        $this->idDetalleProforma = $idDetalleProforma;
-        $this->idProforma = $idProforma;
+        $this->idDetalleBoleta = $idDetalleBoleta;
+        $this->idBoleta = $idBoleta;
         $this->idProducto = $idProducto;
         $this->cantidad = $cantidad;
         $this->precio = $precio;
     }
 
-    public function getIdDetalleProforma(){
-        return $this->idDetalleProforma;
+    public function getIdDetalleBoleta(){
+        return $this->idDetalleBoleta;
     }
-    public function getIdProforma(){
-        return $this->idProforma;
+    public function getIdBoleta(){
+        return $this->idBoleta;
     }
     public function getIdProducto(){
         return $this->idProducto;
@@ -39,11 +39,11 @@ class DetalleProforma {
     }
 
 
-    public function setIdDetalleProforma(){
-        return $this->idDetalleProforma;
+    public function setIdDetalleBoleta(){
+        return $this->idDetalleBoleta;
     }
-    public function setIdProforma(){
-        return $this->idProforma;
+    public function setIdBoleta(){
+        return $this->idBoleta;
     }
     public function setIdProducto(){
         return $this->idProducto;
@@ -57,8 +57,8 @@ class DetalleProforma {
 
     public function json(){
         return [
-            'idDetalleProforma' => $this->getIdDetalleProforma(),
-            'idProforma' => $this->getIdProforma(),
+            'idDetalleBoleta' => $this->getIdDetalleBoleta(),
+            'idBoleta' => $this->getIdBoleta(),
             'idProducto' => $this->getIdProducto(),
             'cantidad' => $this->getCantidad(),
             'precio' => $this->getPrecio(),

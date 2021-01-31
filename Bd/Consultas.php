@@ -32,12 +32,12 @@ class Consultas{
             $stmt = $conn->prepare( "INSERT INTO $table ($names) VALUES ( $values )");
             
             foreach( $insert as $key => $item ) {
-                $stmt->bindParam( ":$key", $item );
+                $stmt->bindValue( ":$key", $item );
             }
 			$stmt ->execute();
             return $stmt->execute();
 		}catch( Exception $e ){
-
+            echo $e->getMessage();
 		}
     }
 
@@ -48,16 +48,56 @@ class Consultas{
             $names = implode( ', ', array_keys( $insert ) );
             $values = ':'.implode(', :', array_keys( $insert ) );
 
-            $stmt = $conn->prepare( "INSERT INTO $table ($names) VALUES ( $values )");
+            $stmt = $conn->prepare( "INSERT INTO boleta ( $names ) VALUES ( $values ) ");
             
             foreach( $insert as $key => $item ) {
-                $stmt->bindParam( ":$key", $item );
+                $stmt->bindValue( ":$key", $item );
             }
 			$stmt ->execute();
 
 			return $conn->lastInsertId();
 		}catch( Exception $e ){
+            echo $e->getMessage();
+		}
+    }
 
+    public static function insertBoletaProformagetIdLast( $table, $insert ) {
+        try{
+            $conn = Conexion::getInstance()->connect();
+
+            $names = implode( ', ', array_keys( $insert ) );
+            $values = ':'.implode(', :', array_keys( $insert ) );
+
+            $stmt = $conn->prepare( "INSERT INTO $table ( $names ) VALUES ( :id_cliente, :fecha, :total, :id_trabajador ) ");
+            
+            foreach( $insert as $key => $item ) {
+                $stmt->bindValue( ":$key", $item );
+            }
+			$stmt ->execute();
+
+			return $conn->lastInsertId();
+		}catch( Exception $e ){
+            echo $e->getMessage();
+		}
+    }
+
+    public static function insertDetalleBoletaProformagetIdLast( $table, $insert ) {
+        try{
+            $conn = Conexion::getInstance()->connect();
+
+            $names = implode( ', ', array_keys( $insert ) );
+            $values = ':'.implode(', :', array_keys( $insert ) );
+
+            $stmt = $conn->prepare( "INSERT INTO $table ( $names ) VALUES ( :id_boleta, :id_producto, :cantidad, :precio ) ");
+            
+            foreach( $insert as $key => $item ) {
+                $stmt->bindValue( ":$key", $item );
+            }
+			$stmt ->execute();
+
+			return $conn->lastInsertId();
+		}catch( Exception $e ){
+            echo $e->getMessage();
 		}
     }
 

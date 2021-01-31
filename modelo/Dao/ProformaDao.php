@@ -9,7 +9,8 @@ class ProformaDao
     public static function proformaRegistrar($obj)
     {
         date_default_timezone_set('America/Lima');
-        $hora = strtotime('-1 hour', strtotime(date('Y-m-d H:i:s')));
+        // $hora = strtotime('-1 hour', strtotime(date('Y-m-d H:i:s')));
+        $hora = date('Y-m-d H:i:s');
 
         $data = [
             'idtrabajador' => 1,
@@ -28,7 +29,7 @@ class ProformaDao
         try {
             $whereArray = [];
             $dni = '';
-            $whereArray[':idtrab'] = 1;
+            // $whereArray[':idtrab'] = 1;
             if ($obj['dni']) {
                 $dni = ' AND cli.dni = :dni ';
                 $whereArray[':dni'] = $obj['dni'];
@@ -49,7 +50,8 @@ class ProformaDao
             $where = "proforma pro  
             LEFT JOIN cliente cli ON cli.idcliente = pro.idcliente  
             LEFT JOIN trabajador tra ON tra.idtrabajador = pro.idtrabajador 
-            WHERE status = 1 AND pro.idtrabajador = :idtrab " . $dni . " AND fecha >= :desde AND fecha <= :hasta ORDER BY fecha DESC LIMIT " . $obj['start'] . " , " . $obj['length'];
+            WHERE status = 1 " . $dni . " AND fecha >= :desde AND fecha <= :hasta ORDER BY fecha DESC LIMIT " . $obj['start'] . " , " . $obj['length'];
+            // WHERE status = 1 AND pro.idtrabajador = :idtrab " . $dni . " AND fecha >= :desde AND fecha <= :hasta ORDER BY fecha DESC LIMIT " . $obj['start'] . " , " . $obj['length'];
 
             $stmt = Consultas::select($select, $where, $whereArray);
 

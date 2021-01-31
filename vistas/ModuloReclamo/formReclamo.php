@@ -4,7 +4,7 @@ include_once('../componentes/nav_bar.php');
 class reclamo
 {
 
-    public static function mostrarReclamo()
+    public static function mostrarReclamo($data)
     {
         include_once('../componentes/menu.php');
         $menu = new menu;
@@ -35,12 +35,13 @@ class reclamo
                                                                 <div class="col-12 col-sm-12 col-md-12">
                                                                     <div class="list-group list-group-flush ">
                                                                         <div class="form-group focused">
+                                                                            <?php //print_r($data) ?>
                                                                             <label class="form-control-label" for="input-name">Lista de Productos</label>
-                                                                            <select name="" id="" class="form-control form-control-alternative bg-secondary">
-                                                                                <option value="001">Producto 1</option>
-                                                                                <option value="002">Producto 2</option>
-                                                                                <option value="003">Producto 3</option>
-                                                                                <option value="004">Producto 4</option>
+                                                                            <select name="" id="" class="chosen chosen-select form-control form-control-alternative bg-secondary form-select__lista-productos">
+                                                                                <option value="">Seleccione un producto</option>
+                                                                                <?php foreach ($data as $item) { ?>
+                                                                                    <option value="<?= $item->producto->getIdProducto() ?>"><?= $item->producto->getNombre() ?></option>
+                                                                                <?php } ?>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -53,14 +54,14 @@ class reclamo
                                                                 <div class="row">
                                                                     <div class="col-sm-6 col-md-6">
                                                                         <div class="custom-control custom-radio mb-3">
-                                                                            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                                                                            <label class="custom-control-label" for="customRadio6">Producción</label>
+                                                                            <input name="form-rb__agregar" class="custom-control-input form-rb__produccion form-rb__agregar" value="Produccion" id="produccion" checked type="radio">
+                                                                            <label class="custom-control-label" for="produccion">Producción</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6 col-md-6">
                                                                         <div class="custom-control custom-radio mb-3">
-                                                                            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                                                                            <label class="custom-control-label" for="customRadio6">Almacén</label>
+                                                                            <input name="form-rb__agregar" class="custom-control-input form-rb__almacen form-rb__agregar" value="Almacén" id="almacen" type="radio">
+                                                                            <label class="custom-control-label" for="almacen">Almacén</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -70,17 +71,26 @@ class reclamo
                                                                     <div class="list-group list-group-flush ">
                                                                         <div class="form-group focused">
                                                                             <label class="form-control-label" for="input-name">Detalle</label>
-                                                                            <textarea class="form-control form-control-alternative bg-secondary" id="exampleFormControlTextarea1" rows="3" placeholder="Escribe el detalle del reclamo"></textarea> </div>
+                                                                            <textarea class="form-control form-control-alternative bg-secondary form-ta__detalle" id="exampleFormControlTextarea1" rows="3" placeholder="Escribe el detalle del reclamo"></textarea> </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-12 col-sm-12 col-md-12">
+                                                                <div class="col-12 col-sm-12 col-md-6">
                                                                     <div class="list-group list-group-flush ">
-                                                                        <div class="form-group focused d-flex">
+                                                                        <div class="form-group focused">
                                                                             &nbsp;
                                                                             <br />
-                                                                            <button type="button" class="btn btn-lg col-sm-12 col-md-8 col-lg-6 btn-danger mx-auto"> <i class="fa fa-search" aria-hidden="true"></i> Buscar Boleta</button>
+                                                                            <button type="button" class="btn btn-lg col-sm-12 col-md-12 col-lg-12 btn-info mx-auto form-btn__reclamos"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-12 col-md-6">
+                                                                    <div class="list-group list-group-flush ">
+                                                                        <div class="form-group focused">
+                                                                            &nbsp;
+                                                                            <br />
+                                                                            <button type="button" class="btn btn-lg col-sm-12 col-md-12 col-lg-12 btn-danger mx-auto form-btn__guardar"> <i class="fas fa-save"></i> Guardar</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -100,38 +110,13 @@ class reclamo
                                                                 <thead class="thead-light">
                                                                     <tr>
                                                                         <th scope="col" data-sort="name" class="sort">Nro</th>
-                                                                        <th scope="col" data-sort="name" class="sort">Descipción</th>
+                                                                        <th scope="col" data-sort="name" class="sort">Producto</th>
                                                                         <th scope="col" data-sort="budget" class="sort">Categoría</th>
                                                                         <th scope="col" data-sort="status" class="sort">Detalle</th>
-                                                                        <th scope="col">Estado</th>
                                                                         <th scope="col"></th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody class="list">
-                                                                    <tr>
-                                                                        <td scope="col" data-sort="name" class="sort">1</th>
-                                                                        <td scope="col" data-sort="name" class="sort">Producto 1</th>
-                                                                        <td scope="col" data-sort="budget" class="sort">Aretes</th>
-                                                                        <td scope="col" data-sort="status" class="sort">Estes es un areta que tiene fallos</th>
-                                                                        <td scope="col" data-sort="status" class="sort">1</th>
-                                                                        <th scope="col">
-                                                                            <button type="button" class="btn btn-primary">
-                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                            </button>
-                                                                        </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td scope="col" data-sort="name" class="sort">2</th>
-                                                                        <td scope="col" data-sort="name" class="sort">Producto 2</th>
-                                                                        <td scope="col" data-sort="budget" class="sort">Collar</th>
-                                                                        <td scope="col" data-sort="status" class="sort">Estes es un areta que tiene fallos</th>
-                                                                        <td scope="col" data-sort="status" class="sort">1</th>
-                                                                        <th scope="col">
-                                                                            <button type="button" class="btn btn-primary">
-                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                            </button>
-                                                                        </th>
-                                                                    </tr>
+                                                                <tbody class="list tabla__productos">
                                                                 </tbody>
                                                             </table>
                                                         </div>

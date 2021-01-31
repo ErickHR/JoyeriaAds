@@ -66,57 +66,15 @@ class listaReclamo
                                                 <div class="">
                                                     <!-- <div class="table-responsive"> -->
                                                     <div>
-                                                        <table class="table align-items-center">
+                                                        <table class="display dataTable no-footer dtr-inline" style="width: 100%" id="tabla-lista__reclamos">
                                                             <thead class="thead-light">
-                                                                <tr>
-                                                                    <th scope="col" data-sort="name" class="sort">Nro</th>
-                                                                    <th scope="col" data-sort="name" class="sort">Descipción</th>
-                                                                    <th scope="col" data-sort="budget" class="sort">Categoría</th>
-                                                                    <th scope="col" data-sort="status" class="sort">Detalle</th>
-                                                                    <th scope="col">Estado</th>
-                                                                    <th scope="col"></th>
-                                                                </tr>
+                                                                <th>Nro</th>
+                                                                <th>Producto</th>
+                                                                <th>Categoría</th>
+                                                                <th>Detalle</th>
+                                                                <th>Estado</th>
+                                                                <th></th>
                                                             </thead>
-                                                            <tbody class="list">
-                                                                <tr class="bg-success">
-                                                                    <td scope="col" data-sort="name" class="sort">1</th>
-                                                                    <td scope="col" data-sort="name" class="sort">Producto 1</th>
-                                                                    <td scope="col" data-sort="budget" class="sort">Aretes</th>
-                                                                    <td scope="col" data-sort="status" class="sort">Estes es un areta que tiene fallos</th>
-                                                                    <td scope="col" data-sort="status" class="sort ">Entregado</th>
-                                                                    <td class="text-right">
-                                                                        <div class="dropdown">
-                                                                            <a class="btn btn-sm btn-icon-only text-light btn-drowpn__title" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                                <i class="fas fa-ellipsis-v"></i>
-                                                                            </a>
-                                                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow btn-drowpn__description" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-161px, -51px, 0px);">
-                                                                                <a class="dropdown-item" href="#">Entregado</a>
-                                                                                <a class="dropdown-item" href="#">ContraTiempo</a>
-                                                                                <a class="dropdown-item" href="#">Cancelado</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="bg-warning">
-                                                                    <td scope="col" data-sort="name" class="sort">2</th>
-                                                                    <td scope="col" data-sort="name" class="sort">Producto 2</th>
-                                                                    <td scope="col" data-sort="budget" class="sort">Collar</th>
-                                                                    <td scope="col" data-sort="status" class="sort">Estes es un areta que tiene fallos</th>
-                                                                    <td scope="col" data-sort="status" class="sort">Cancelado</th>
-                                                                    <td class="text-right">
-                                                                        <div class="dropdown">
-                                                                            <a class="btn btn-sm btn-icon-only text-light btn-drowpn__title" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                                <i class="fas fa-ellipsis-v"></i>
-                                                                            </a>
-                                                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow btn-drowpn__description" x-placement="top-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-161px, -51px, 0px);">
-                                                                                <a class="dropdown-item" href="#">Entregado</a>
-                                                                                <a class="dropdown-item" href="#">ContraTiempo</a>
-                                                                                <a class="dropdown-item" href="#">Cancelado</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
                                                         </table>
                                                     </div>
                                                 </div>

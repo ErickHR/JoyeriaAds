@@ -239,12 +239,14 @@ class Boleta
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="list tbody-lista__productos">
-
+                                                            <?php //print_r( $_SESSION['productos'] ) ?>
+                                                            <?php //print_r("<br>") ?>
+                                                            <?php //print_r( $data->detalle ) ?>
                                                                 <?php foreach ( $data->detalle as $value => $item) { ?>
                                                                     <tr>
                                                                         <td><?= $value + 1 ?></td>
-                                                                        <td><?= "erick" ?></td>
-                                                                        <td><?= "erick" ?></td>
+                                                                        <td><?= $item->producto->getNombre() ?></td>
+                                                                        <td><?= $item->producto->getDescripcion() ?></td>
                                                                         <td><?= $item->getCantidad() ?></td>
                                                                         <td><?= $item->getPrecio() ?></td>
                                                                         <td><?= $item->getCantidad() * $item->getPrecio() ?></td>

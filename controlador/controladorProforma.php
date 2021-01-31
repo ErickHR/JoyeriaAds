@@ -40,9 +40,9 @@ class controladorProforma
 
         $_POST['total'] = $total;
 
-
         $idProforma = ProformaDao::proformaRegistrar( $_POST );
 
+        return [ $idProforma ];
 
         foreach( $_SESSION['productos'] as $item ) {
             $item['idProforma'] = $idProforma;
@@ -64,7 +64,7 @@ class controladorProforma
         $stmt = ProformaDao::proformaListar( $_POST );
 
         return Array(
-            "draw"=> 2,
+            "draw"=> 1,
             "recordsTotal"=> count($stmt),
             "recordsFiltered"=> count( $stmt ),
             "length" => count( $stmt ),

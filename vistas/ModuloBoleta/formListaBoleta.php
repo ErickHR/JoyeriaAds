@@ -3,7 +3,7 @@ include_once('../componentes/nav_bar.php');
 class listaBoleta
 {
 
-    public function mostrarListaBoleta()
+    public static function mostrarListaBoleta()
     {
         include_once('../componentes/menu.php');
         $menu = new menu;
@@ -27,29 +27,47 @@ class listaBoleta
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-12 col-sm-12 col-md-4">
+                                                    <div class="col-12 col-sm-12 col-md-6">
                                                         <div class="list-group list-group-flush ">
                                                             <div class="form-group focused">
                                                                 <label class="form-control-label" for="input-name">DNI</label>
-                                                                <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="DNI" value="" required="" autofocus="">
+                                                                <input type="text" name="dni" id="input-name" class="form-control form-control-alternative bg-secondary buscar-boleta__dni" placeholder="DNI" value="" required="" autofocus="">
                                                                 <label class="form-control-label" for="input-name">NOMBRE: </label><cite title="Source Title">Huarancca Rivas, Isaac Erick</cite>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-sm-12 col-md-4">
+                                                    <div class="col-12 col-sm-12 col-md-6">
                                                         <div class="list-group list-group-flush ">
                                                             <div class="form-group focused">
                                                                 <label class="form-control-label" for="input-name">Nro. Boleta</label>
-                                                                <input type="text" name="name" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="Nro. Boleta" value="" required="" autofocus="">
+                                                                <input type="text" name="numero" id="input-name" class="form-control form-control-alternative bg-secondary" placeholder="Nro. Boleta" value="" required="" autofocus="">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-sm-12 col-md-4">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-12 col-md-6">
                                                         <div class="list-group list-group-flush ">
                                                             <div class="form-group focused">
-                                                                &nbsp;
-                                                                <br />
-                                                                <button type="button" class="btn btn-lg col-sm-12 col-md-8 col-lg-6 btn-danger mx-auto"> <i class="fa fa-search" aria-hidden="true"></i> Buscar Boleta</button>
+                                                                <label class="form-control-label" for="input-name">DESDE</label>
+                                                                <input type="date" name="desde" id="input-name" class="form-control form-control-alternative bg-secondary buscar-boleta__fecha-desde" placeholder="Nro" value="<?= date('Y-m-d') ?>" required="" autofocus="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-sm-12 col-md-6">
+                                                        <div class="list-group list-group-flush ">
+                                                            <div class="form-group focused">
+                                                                <label class="form-control-label" for="input-name">HASTA</label>
+                                                                <input type="date" name="hasta" id="input-name" class="form-control form-control-alternative bg-secondary buscar-boleta__fecha-hasta" placeholder="Nro" value="<?= date('Y-m-d') ?>" required="" autofocus="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="list-group list-group-flush ">
+                                                            <div class="form-group focused d-flex">
+                                                                <button type="button" class="btn btn-lg col-md-4 col-sm-12 btn-danger mx-auto buscar-boleta__btn"><i class="fa fa-search" aria-hidden="true"></i> Buscar Boleta</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -63,43 +81,16 @@ class listaBoleta
                                             <div class="card-body">
                                                 <div class="table-responsive">
                                                     <div>
-                                                        <table class="table align-items-center">
+                                                        <table id="table-lista__boletas" class="display dataTable no-footer dtr-inline" style="width: 100%">
                                                             <thead class="thead-light">
-                                                                <tr>
-                                                                    <th scope="col" data-sort="name" class="sort">Nro</th>
-                                                                    <th scope="col" data-sort="name" class="sort">Nro Boleta</th>
-                                                                    <th scope="col" data-sort="budget" class="sort">Fecha de Emisión</th>
-                                                                    <th scope="col" data-sort="status" class="sort">Nombre</th>
-                                                                    <th scope="col">Estado</th>
-                                                                    <th scope="col"></th>
-                                                                </tr>
+                                                                <th>Nro</th>
+                                                                <th>Nro Boleta</th>
+                                                                <th>Fecha de Emisión</th>
+                                                                <th>Nombre</th>
+                                                                <th>Estado</th>
+                                                                <th>
+                                                                </th>
                                                             </thead>
-                                                            <tbody class="list">
-                                                                <tr>
-                                                                    <td scope="col" data-sort="name" class="sort">1</th>
-                                                                    <td scope="col" data-sort="name" class="sort">0001</th>
-                                                                    <td scope="col" data-sort="budget" class="sort">2020-10-20</th>
-                                                                    <td scope="col" data-sort="status" class="sort">Huarancca Rivas, Isaac Erick</th>
-                                                                    <td scope="col" data-sort="status" class="sort text-warning">Garantia Caducada</th>
-                                                                    <th scope="col">
-                                                                        <a href="/joyeriaADs/obtenerDatos/obtenerReclamo.php?accion=reclamo" class="btn btn-primary">
-                                                                            <i class="fa fa-times" aria-hidden="true"></i> Generar Reclamo
-                                                                        </a>
-                                                                    </th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td scope="col" data-sort="name" class="sort">2</th>
-                                                                    <td scope="col" data-sort="name" class="sort">0002</th>
-                                                                    <td scope="col" data-sort="budget" class="sort">2020-10-20</th>
-                                                                    <td scope="col" data-sort="status" class="sort">Huarancca Rivas, Isaac Erick</th>
-                                                                    <td scope="col" data-sort="status" class="sort text-warning">Garantia Activa</th>
-                                                                    <th scope="col">
-                                                                        <a href="/joyeriaADs/obtenerDatos/obtenerReclamo.php?accion=reclamo" class="btn btn-primary">
-                                                                            <i class="fa fa-times" aria-hidden="true"></i> Generar Reclamo
-                                                                        </a>
-                                                                    </th>
-                                                                </tr>
-                                                            </tbody>
                                                         </table>
                                                     </div>
                                                 </div>

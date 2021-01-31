@@ -131,6 +131,7 @@ function rellenarListaTablasProductosSinAcciones( data, _clase ) {
 
 }
 
+
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
     $(document).on('click', '.btn-add__cliente', function(){

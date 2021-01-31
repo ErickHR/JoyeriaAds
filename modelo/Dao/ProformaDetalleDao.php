@@ -22,8 +22,8 @@ class ProformaDetalleDao {
 
     public static function proformaDetalleBuscarIdproforma( $id ){
         
-        $stmt = Consultas::select( '*', 'detalle_proforma WHERE idproforma = :id', [':id' => $id] );
-
+        $stmt = Consultas::select( '*', 'detalle_proforma WHERE idproforma = :id', [':id' => $id ] );
+        
         $lista = [];
         foreach( $stmt as $item ) {
             $detalleProforma = new DetalleProforma(
@@ -36,7 +36,6 @@ class ProformaDetalleDao {
             $lista[] = $detalleProforma;
 
         }
-
         return $lista;
 
     }

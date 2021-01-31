@@ -74,6 +74,54 @@ class controladorProducto
 		return [ 'resultado' => true, 'data' => $_SESSION['productos'], 'msg' => "Eliminado" ];
     }
 
+    public function funct_producto_agregar_session_reclamo(){
+        $producto = ProductoDao::productoBuscar( $_POST['id'] );
+
+        $dataReclamo = [
+            'producto' => $producto->json(),
+            'categoria' => $_POST['categoria'],
+            'detalle' => $_POST['detalle']
+        ];
+
+        if( !isset( $_SESSION['productos'] ) ) {
+
+			$_SESSION['productos'] = [];
+			unset( $_POST['accion'] );
+            $_SESSION['productos'] = [ $dataReclamo ];
+
+		} else {
+            foreach( $_SESSION['productos'] as $item ) {
+                if( $item['producto']['idProducto'] == $producto->getIdProducto() ) {
+                    return ['resultado' => false, 'msg' => "Producto ya esta en la lista"];
+                }
+            }
+
+			$data = $_SESSION['productos'];
+			$data[] = $dataReclamo;
+            $_SESSION['productos'] = $data;
+            
+        }
+        
+		if( count( $_SESSION['productos'] ) != 0 ) {
+			return [ 'resultado' => true, 'data' => $_SESSION['productos'], "msg" => 'Agregado a la lista' ];
+		}
+        return ['resultado' => false];
+
+    }
+
+    public function funct_producto_eliminar_session_reclamo(){
+        $data = [];
+		foreach( $_SESSION['productos'] as $item ){
+			if( $_POST['idProducto'] != $item['producto']['idProducto'] ) {
+				$data[] = $item;
+			}
+        }
+        // $data = $_SESSION['productos'];
+        // unset( $data[ $_POST['index'] ] );
+		$_SESSION['productos'] = $data;
+		return [ 'resultado' => true, 'data' => $_SESSION['productos'], 'msg' => "Eliminado" ];
+    }
+
 }
 
 ?>

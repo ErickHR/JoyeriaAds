@@ -11,7 +11,6 @@ class ProductoDao {
     public static function productoBuscar( $id ) {
         try{
 			$stmt = Consultas::select( '*', 'producto WHERE idproducto = :id AND status = 1 ', [ ':id' => $id ] );
-
 			if( count( $stmt ) == 0 ) {
 				return null;
 			}
@@ -25,7 +24,6 @@ class ProductoDao {
 				$stmt[0]->stock,
 				$stmt[0]->descripcion,
 			 );
-
 			return $producto;
 		}catch( Exception $e ){
 

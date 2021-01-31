@@ -7,13 +7,13 @@ $(document).ready(function () {
         let valor = $(this).val()
         if (valor.length == 8 && !isNaN( valor )) {
             let data = {
-                accion: 'obtenerCliente',
+                accion: 'cliente_obtener',
                 dni: valor
             }
             ajax( 'Cliente', data, (data) => {
-                $('.form-create__cite-nombre').html(`<cite title="Nombre del cliente y/o empresa">${data[0].nombreCompleto}</cite>`)
+                $('.form-create__cite-nombre').html(`<cite title="Nombre del cliente y/o empresa">${data[0].apellMat} ${data[0].apellPat}, ${data[0].nombre}</cite>`)
                 $('.form-create__div-mostrar-nombre').show()
-                cliente = data[0].idcliente
+                cliente = data[0].idCliente
             }, () => {
 
                 $('.btn-search__cliente').hide()
@@ -50,7 +50,7 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.btn-search__producto', function(){
-        ajax( 'Producto', {accion : 'buscar_producto_todos', nombre : $('.input-mostrar__producto').val() }, ( data ) => {
+        ajax( 'Producto', {accion : 'buscar_producto_lista', nombre : $('.input-mostrar__producto').val() }, ( data ) => {
             rellenarTablasProductos( data, 'tbody-mostrar__producto' )
             $('.div-mostrar__producto').show()
         },
@@ -65,7 +65,7 @@ $(document).ready(function () {
     $(document).on('click', '.btn-choose__producto', function(){
         let jsons =  $(this).data('valor')
         producto = {...jsons}
-        $('.input-mostrar__producto').val( jsons.cod_producto )
+        $('.input-mostrar__producto').val( jsons.codProducto )
         $('.div-mostrar__producto').hide()
     }) 
     
@@ -89,12 +89,15 @@ $(document).ready(function () {
         } )
     } )
 
-    $(document).on('click', '.btn-form-registrar__boleta', function(){
+    $(document).on('click', '.btn-form-registrar__boleta', function( e ){
+        e.preventDefault();
         let data = {}
         data.cliente = {...cliente}
-        data.accion = 'registrar_boleta'
+        data.accion = 'boleta_registrar'
         ajax( 'Boleta', data, ()=>{
-            window.location.href = 'http://localhost/joyeriaADs/obtenerDatos/obtenerProforma.php?accion=Proforma'
+            setTimeout( () => {
+                window.location.href = 'http://localhost/joyeriaADs/obtenerDatos/obtenerProforma.php?accion=ListaProforma'
+            }, 2000 )
         })
     })
 
